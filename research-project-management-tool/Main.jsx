@@ -8,6 +8,7 @@ import {
    Routes,
    Route,
  } from "react-router-dom";
+import PanelMemberRegister from "./Components/PanelMembers/PanelMemberRegister";
 
 const Main = () => {
    return (
@@ -17,6 +18,7 @@ const Main = () => {
             <Route path="/panelMember" element={<PanelMembers/>}/>
             <Route path="/students" element={<Student/>}/>
             <Route path="/supervisors" element={<Supervisor/>}/>
+            <Route path="/panelMemberReg" element={<PanelMemberRegister/>}/>
          </Routes>
    )
 }
