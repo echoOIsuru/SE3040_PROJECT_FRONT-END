@@ -17,6 +17,7 @@ const Main = () => {
             <Route path="/panelMember" element={<PanelMembers/>}/>
             <Route path="/students" element={<Student/>}/>
             <Route path="/supervisors" element={<Supervisor/>}/>
+            <Route path="/panelMember2" element={<PanelMembers/>}/>
          </Routes>
    )
 }
