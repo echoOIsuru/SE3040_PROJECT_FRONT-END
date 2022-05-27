@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import SupervisorServices from "../../../Services/Supervisors/SupervisorServices";
 
 export default function SupervisorRequest() {
 
@@ -51,6 +52,10 @@ export default function SupervisorRequest() {
     const onSubmit = (e) => {
         e.preventDefault();
         console.log(inputs)
+
+        SupervisorServices.createTopicRequest(inputs).then(res => {
+            console.log(res.data, "FINAL")
+        })
         //navigate("")
     }
 
@@ -67,13 +72,13 @@ export default function SupervisorRequest() {
                     <div className='col-md-5'>
                         <form className='form-control' onSubmit={onSubmit}>
                             <label className="form-label">Name</label>
-                            <input type="text" name="s_name" className='form-control' onChange={handleOnChange} />
+                            <input type="text" name="student_name" className='form-control' onChange={handleOnChange} required />
                             <br />
                             <label className="form-label">Email address</label>
-                            <input type="email" name="s_email" className='form-control' onChange={handleOnChange} />
+                            <input type="email" name="student_email" className='form-control' onChange={handleOnChange} required />
                             <br />
                             <label className="form-label">Mobile</label>
-                            <input type="text" name="s_mobile" className='form-control' onChange={handleOnChange} />
+                            <input type="text" name="student_mobile" className='form-control' onChange={handleOnChange} required />
                             <br />
                             <label className="form-label">Interest Field</label>
                             <select className="form-control form-control-sm" name="field" onChange={handleOnChange} required>
@@ -97,12 +102,12 @@ export default function SupervisorRequest() {
                             <br />
 
                             <label className="form-label">Topic</label>
-                            <input type="text" name="topic" className='form-control' onChange={handleOnChange} />
+                            <input type="text" name="topic" className='form-control' onChange={handleOnChange} required />
                             <br />
 
                             <div className="mb-3">
                                 <label className="form-label">Topic details</label>
-                                <textarea className="form-control" rows="3" name="topic_details" onChange={handleOnChange}></textarea>
+                                <textarea className="form-control" rows="3" name="topic_details" onChange={handleOnChange} required></textarea>
                             </div>
                             <br />
                             <center>

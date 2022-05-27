@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
+import SupervisorServices from '../../Services/Supervisors/SupervisorServices';
 import ResearchFields from './SupervisorComponents/ResearchFields'
 
 function SupervisorRegister() {
@@ -34,8 +35,14 @@ function SupervisorRegister() {
         } else if (selected.length == 0) {
             window.alert("Please select intrested field")
         } else {
-            console.log(obj, "FINAL")
-            navigate('/supervisors')
+            //console.log(obj, "FINAL")
+
+            SupervisorServices.createSupervisor(obj).then(res => {
+                sessionStorage.setItem("SUPERVISOR", JSON.stringify(res.data))
+                navigate('/supervisors')
+            })
+
+
         }
 
     }

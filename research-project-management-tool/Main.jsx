@@ -11,6 +11,7 @@ import Supervisor from "./Components/Supervisor/Supervisor";
 import GroupChat from './Components/Supervisor/GroupChat';
 import SupervisorRegister from "./Components/Supervisor/SupervisorRegister";
 import SupervisorRequest from "./Components/Supervisor/StudentPages/SupervisorRequest";
+import SupervisorDocumentEvaluation from "./Components/Supervisor/SupervisorDocumentEvaluation";
 
 const Main = () => {
    return (
@@ -19,11 +20,12 @@ const Main = () => {
          <Route path="/admins" element={<Admin />} />
          <Route path="/panelMember" element={<PanelMembers />} />
          <Route path="/students" element={<Student />} />
+         <Route path="/panelMember2" element={<PanelMembers />} />
          <Route path="/supervisors" element={<Supervisor />} />
          <Route path="/supervisors/register" element={<SupervisorRegister />} />
          <Route path="/supervisors/chats" element={<GroupChat />} />
-         <Route path="/panelMember2" element={<PanelMembers />} />
          <Route path="/supervisors/student-requests" element={<SupervisorRequest />} />
+         <Route path="/supervisors/document-evaluations" element={<SupervisorDocumentEvaluation />} />
       </Routes>
    )
 }
