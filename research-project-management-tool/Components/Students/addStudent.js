@@ -28,13 +28,13 @@ export default function AddStudent() {
         email,
         phone,
         password,
-
+        
       }
       axios.post("http://localhost:8090/student/add", newStudent).then((res) => {
         alert(res.data)
         navigate("/login");
       }).catch((err) => {
-        alert("User with given email already Exist!")
+        alert("User with given email or already Exist!")
       })
     }
   }

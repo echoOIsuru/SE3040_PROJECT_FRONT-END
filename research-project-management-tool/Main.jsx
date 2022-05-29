@@ -8,9 +8,20 @@ import {
    Routes,
    Route,
  } from "react-router-dom";
+
+
 import AddStudent from "./Components/Students/addStudent";
 import AllStudent from "./Components/Students/Allstudents";
+import Download from "./Components/Students/download";
+import AddGroup from "./Components/Students/groupRegistration";
 import Login from "./Components/Students/login";
+import Submition from "./Components/Students/submition";
+import AddTopic from "./Components/Students/topic_registration";
+import Upload from "./Components/Students/upload";
+import Allfiles from "./Components/Students/viewfile";
+import ViewTopicRequest from "./Components/Students/viewTopicRequest";
+import ViewGroup from "./Components/Students/view_group_details";
+import Allsubmition from "./Components/Students/view_Submition";
 
 const Main = () => {
    return (
@@ -26,6 +37,15 @@ const Main = () => {
            <Route path="/add" element={<AddStudent/>}/>
            <Route path="/" element={<AllStudent/>}/>
            <Route path="/login" element={<Login/>}/>
+           <Route path="/topic" element={<AddTopic/>}/>
+           <Route path="/viewtopic" element={<ViewTopicRequest/>}/>
+           <Route path="/group" element={<AddGroup/>}/>
+           <Route path="/view_group" element={<ViewGroup/>}/>
+           <Route path="/upload" element={<Upload/>}/>
+           <Route path="/view_upload" element={<Allfiles/>}/>
+           <Route path="/d" element={<Download/>}/>
+           <Route path="/submition" element={<Submition/>}/>
+           <Route path="/view_submition" element={<Allsubmition/>}/>
          </Routes>
    )
 }
