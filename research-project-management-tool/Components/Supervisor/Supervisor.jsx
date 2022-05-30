@@ -1,32 +1,92 @@
 import React, { useEffect, useState } from "react";
+import SupervisorServices from "../../Services/Supervisors/SupervisorServices";
 
 export default function Supervisor() {
 
     const [topicRegistraionRequest, setTopicRegistraion] = useState([]);
+    const [supervisor, setSupervisor] = useState([]);
+    const [stat, setStat] = useState(false)
 
     useEffect(() => {
-        setTopicRegistraion([
-            {
-                group_name: "GG",
-                leader: "IT20132321",
-                topic: "Research GG",
-                interested_field: "field 1",
-                details: "asdasd qwoeiqwje poqiweuqwoie"
-            }, {
-                group_name: "GG",
-                leader: "IT20132321",
-                topic: "Research GG",
-                interested_field: "field 1",
-                details: "asdasd qwoeiqwje poqiweuqwoie"
-            }, {
-                group_name: "GG",
-                leader: "IT20132321",
-                topic: "Research GG",
-                interested_field: "field 1",
-                details: "asdasd qwoeiqwje poqiweuqwoie"
-            },
-        ])
-    }, [])
+        const session = JSON.parse(sessionStorage.getItem("SUPERVISOR"))
+        setSupervisor(session);
+
+        SupervisorServices.getTopicRequestBySupervisor(session._id).then(res => {
+            setTopicRegistraion(res.data)
+        })
+        setStat(false)
+    }, [stat])
+
+
+    const createChat = (group) => {
+        /// need to get from topic registrtion
+        group = {
+            group_id: "GROUP_2",
+            group_name: "POWER2 GROUP",
+            leader: "12312asdasd",
+            member1: "member1",
+            member2: "member2",
+            member3: "member3",
+            supervisor_id: supervisor._id,
+            chat_id: "chatid00222"
+        }
+
+
+        SupervisorServices.viewChatByGroup(group.group_id).then(res => {
+            let val = (res.data).length
+            if (val == 0) {
+                const temp = {
+                    group_id: group.group_id,
+                    data: {
+                        name: "supervisor",
+                        chat: "Welcome to the chat",
+                        date: new Date(),
+                    },
+                    supervisor_id: supervisor._id,
+                    group_data: group
+                }
+
+                SupervisorServices.createChat(temp).then(res => {
+                    console.log(res.data)
+                })
+            } else {
+                window.alert("Chat Group already created")
+            }
+        })
+    }
+
+    const rejectRequest = (data) => {
+        let obj = {
+            id: data._id,
+            s_status: "Rejected"
+        }
+        if (window.confirm("Do you want to reject request?")) {
+            SupervisorServices.setSupervisorRequestStatus(obj).then(res => {
+                setStat(true)
+            })
+        } else {
+
+        }
+
+
+    }
+
+    const acceptRequest = (data) => {
+        let obj = {
+            id: data._id,
+            s_status: "Accepted"
+        }
+
+        if (window.confirm("Do you want to accept request?")) {
+            SupervisorServices.setSupervisorRequestStatus(obj).then(res => {
+                setStat(true)
+            })
+        } else {
+
+        }
+
+    }
+
 
     return (
         <div className="container" style={{ marginTop: "20px" }}>
@@ -37,16 +97,19 @@ export default function Supervisor() {
                 <div className="row" style={{ marginBottom: "20px", marginTop: "20px" }}>
                     <h2 className="text-center">Topic Registration Requests</h2>
                 </div>
+                <a href="supervisors/chats" className="btn btn-light">GO TO CHATS</a>
                 <div className="row">
                     <table className="table">
                         <thead className="table-dark">
                             <tr>
                                 <th scope="col"></th>
                                 <th scope="col">Group Name</th>
-                                <th scope="col">Leader</th>
-                                <th scope="col">Topic Name</th>
-                                <th scope="col">Interest Field</th>
-                                <th scope="col">Document</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Student Email</th>
+                                <th scope="col">Student Mobile</th>
+                                <th scope="col">Field</th>
+                                <th scope="col">Topic</th>
+                                <th scope="col">Topic Details</th>
                                 <th scope="col"></th>
                             </tr>
                         </thead>
@@ -54,15 +117,22 @@ export default function Supervisor() {
                             {
                                 topicRegistraionRequest.map((obj, index) => {
                                     return (
-                                        <tr key={index + 1}>
+                                        <tr key={obj._id}>
                                             <th scope="row">{index + 1}</th>
-                                            <td>{obj.group_name}</td>
-                                            <td>{obj.leader}</td>
+                                            <td>{"TO-DO"}</td>
+                                            <td>{obj.student_name}</td>
+                                            <td>{obj.student_email}</td>
+                                            <td>{obj.student_mobile}</td>
+                                            <td>{obj.field}</td>
                                             <td>{obj.topic}</td>
-                                            <td>{obj.interested_field}</td>
-                                            <td>{obj.details}</td>
-                                            <td><button className="btn btn-success">Accept</button>
-                                                <button className="btn btn-danger">Reject</button></td>
+                                            <td>{obj.topic_details}</td>
+                                            <td>
+                                                <button className="btn btn-warning" onClick={() => createChat("TODO")}>Create Chat</button>
+                                                {obj.s_status == "Pending" && <button className="btn btn-danger" onClick={() => rejectRequest(obj)}>Reject</button>}
+                                                {obj.s_status == "Pending" && <button className="btn btn-success" onClick={() => acceptRequest(obj)}>Accept</button>}
+                                                {obj.s_status == "Accepted" && <button disabled className="btn btn-success" onClick={() => acceptRequest(obj)}>Accepted</button>}
+                                                {obj.s_status == "Rejected" && <button disabled className="btn btn-danger" onClick={() => rejectRequest(obj)}>Rejected</button>}
+                                            </td>
                                         </tr>
                                     )
                                 })
