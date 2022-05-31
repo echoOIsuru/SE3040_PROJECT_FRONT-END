@@ -20,7 +20,7 @@ export default function Allfiles (p) {
   function deleteFile(id) {
     if (window.confirm('Are you sure do you whant to delete this file?')) {
       axios.delete("http://localhost:8090/file/file-delete/" + id).then((res) => {
-        alert("file is deeted");
+        alert("File deleted");
         getFile();
       })
     }

@@ -36,7 +36,8 @@ export default function AddGroup() {
       }
       axios.post("http://localhost:8090/group/add", newgroup).then((res) => {
         alert(res.data)
-        // navigate("/login");
+        navigate("/student_home");
+
       }).catch((err) => {
         alert(" given group already Exist!")
       })

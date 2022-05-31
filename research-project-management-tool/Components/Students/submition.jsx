@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
-
+import { useNavigate, useParams } from 'react-router-dom'
 export default function Submition(props) {
   const [file, setFile] = useState(null); // state for storing actual image
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
@@ -10,6 +10,7 @@ export default function Submition(props) {
     title: '',
     email: ''
   });
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false); // state to show preview only for images
   const dropRef = useRef(); // React ref for managing the hover state of droppable area
@@ -61,6 +62,7 @@ export default function Submition(props) {
             }
           }).then((res) => {
             alert(res.data);
+            navigate("/student_home")
           });
           props.history.push('/allfiles');
         } else {

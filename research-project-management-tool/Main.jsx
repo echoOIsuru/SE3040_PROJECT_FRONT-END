@@ -16,7 +16,6 @@ import Download from "./Components/Students/download";
 import AddGroup from "./Components/Students/groupRegistration";
 import Login from "./Components/Students/login";
 import Submition from "./Components/Students/submition";
-import AddTopic from "./Components/Students/topic_registration";
 import Upload from "./Components/Students/upload";
 import Allfiles from "./Components/Students/viewfile";
 import ViewTopicRequest from "./Components/Students/viewTopicRequest";
@@ -35,9 +34,9 @@ const Main = () => {
 
          
            <Route path="/add" element={<AddStudent/>}/>
-           <Route path="/" element={<AllStudent/>}/>
-           <Route path="/login" element={<Login/>}/>
-           <Route path="/topic" element={<AddTopic/>}/>
+           <Route path="/student_home" element={<AllStudent/>}/>
+           <Route path="/" element={<Login/>}/>
+      
            <Route path="/viewtopic" element={<ViewTopicRequest/>}/>
            <Route path="/group" element={<AddGroup/>}/>
            <Route path="/view_group" element={<ViewGroup/>}/>

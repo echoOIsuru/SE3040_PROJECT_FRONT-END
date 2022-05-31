@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
+import { useNavigate, useParams } from 'react-router-dom'
 
 export default function Upload(props) {
   const [file, setFile] = useState(null); // state for storing actual image
@@ -10,6 +11,7 @@ export default function Upload(props) {
     title: '',
     email: ''
   });
+  const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState('');
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false); // state to show preview only for images
   const dropRef = useRef(); // React ref for managing the hover state of droppable area
@@ -60,7 +62,9 @@ export default function Upload(props) {
               'Content-Type': 'multipart/form-data'
             }
           }).then((res) => {
+            navigate("/student_home")
             alert(res.data);
+
           });
           props.history.push('/allfiles');
         } else {
@@ -78,7 +82,7 @@ export default function Upload(props) {
     <React.Fragment>
         <div className="container" >
       <hr/>
-      <h3> Presentation  Upload Portal</h3>
+      <h3> Topic Registration File Upload Portal</h3>
       <hr/>
       <br/>
       <Form className="search-form" onSubmit={handleOnSubmit}>

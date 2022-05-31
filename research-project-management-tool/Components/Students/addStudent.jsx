@@ -32,7 +32,7 @@ export default function AddStudent() {
       }
       axios.post("http://localhost:8090/student/add", newStudent).then((res) => {
         alert(res.data)
-        navigate("/login");
+        navigate("/");
       }).catch((err) => {
         alert("User with given email or already Exist!")
       })
