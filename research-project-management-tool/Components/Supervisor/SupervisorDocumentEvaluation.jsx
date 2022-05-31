@@ -78,7 +78,7 @@ function SupervisorDocumentEvaluation() {
                                     <th scope="col">Topic Name</th>
                                     <th scope="col">Interest Field</th>
                                     <th scope="col">Document</th>
-                                    <th scope="col"></th>
+                                    <th scope="col">Feedbacks</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,6 +93,7 @@ function SupervisorDocumentEvaluation() {
                                                 <td>{obj.interested_field}</td>
                                                 <td><button className="btn btn-success" >Download</button>
                                                 </td>
+                                                <td><td><a href="/supervisors/document-feedbacks" className='btn btn-primary'>Feedbacks</a></td></td>
                                             </tr>
                                         )
                                     })

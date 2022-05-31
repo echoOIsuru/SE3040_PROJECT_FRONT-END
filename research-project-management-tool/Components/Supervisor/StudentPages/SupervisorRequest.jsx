@@ -12,21 +12,21 @@ export default function SupervisorRequest() {
 
     useEffect(() => {
         setInterestFields([{
-            field: "gg1"
+            field: "ggwp1"
         }, {
-            field: "gg2"
+            field: "ggwp2"
         }, {
-            field: "gg3"
+            field: "ggwp3"
         },
         ])
 
-        setSupervisors([
-            {
-                supervisorName: "supervisor1",
-            }, {
-                supervisorName: "supervisor2"
-            }
-        ])
+        // setSupervisors([
+        //     {
+        //         supervisorName: "supervisor1",
+        //     }, {
+        //         supervisorName: "supervisor2"
+        //     }
+        // ])
 
     }, [])
 
@@ -34,29 +34,37 @@ export default function SupervisorRequest() {
         const name = e.target.name;
         const value = e.target.value;
         if (name == "field") {
-            onChangeField()
+            onChangeField(value)
         }
         setInputs(values => ({ ...values, [name]: value }))
     }
 
-    const onChangeField = () => {
-        setSupervisors([
-            {
-                supervisorName: "213123",
-            }, {
-                supervisorName: "sup123123ervisor2"
-            }
-        ])
+    const onChangeField = (val) => {
+        console.log(val, "SDIOUHSOD")
+
+        SupervisorServices.getSupervisorByField(val).then(res => {
+            //console.log("RES", res.data)
+            setSupervisors(res.data)
+        })
+
+
     }
 
     const onSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs)
 
-        SupervisorServices.createTopicRequest(inputs).then(res => {
-            console.log(res.data, "FINAL")
-        })
-        //navigate("")
+
+        if (!inputs.field || !inputs.supervisor || inputs.field == "fail" || inputs.supervisor == "fail")
+            window.alert("please fill the form correctly")
+        else {
+            SupervisorServices.createTopicRequest(inputs).then(res => {
+                console.log(res.data, "FINAL")
+                window.alert("Request Successfully Added");
+                //navigate("")
+            })
+
+            //console.log(inputs)
+        }
     }
 
     return (
@@ -82,7 +90,7 @@ export default function SupervisorRequest() {
                             <br />
                             <label className="form-label">Interest Field</label>
                             <select className="form-control form-control-sm" name="field" onChange={handleOnChange} required>
-                                <option defaultChecked={true} className="text-center">----------- Select------------</option>
+                                <option defaultChecked={true} className="text-center" value="fail">----------- Select------------</option>
                                 {intrestField.map((field, index) => {
                                     return (
                                         <option key={index}>{field.field}</option>
@@ -92,10 +100,12 @@ export default function SupervisorRequest() {
                             <br />
                             <label className="form-label">Supervisors</label>
                             <select className="form-control form-control-sm" name="supervisor" onChange={handleOnChange} required >
-                                <option defaultChecked={true} className="text-center">----------- Select------------</option>
+                                <option defaultChecked={true} className="text-center" value="fail">----------- Select------------</option>
                                 {supervisors.map((supervisor, index) => {
                                     return (
-                                        <option key={index}>{supervisor.supervisorName}</option>
+
+                                        <option key={index} value={supervisor._id} >{supervisor.s_name}</option>
+
                                     )
                                 })}
                             </select>

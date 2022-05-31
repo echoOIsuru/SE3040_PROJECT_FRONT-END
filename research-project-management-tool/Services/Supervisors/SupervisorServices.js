@@ -12,4 +12,23 @@ const createSupervisor = (data) => axios.post(URL + "supervisors/", data)
 
 const createTopicRequest = (data) => axios.post(URL + "supervisors-request-topic/", data)
 
-export default { downloadPDF, createSupervisor, createTopicRequest }
+const validateSupervisor = (data) => axios.post(URL + "supervisors-validate/", data)
+
+const getSupervisorByField = (data) => axios.get(URL + "supervisors-field/" + data)
+
+const getTopicRequestBySupervisor = (data) => axios.get(URL + "supervisors-topic-requests/" + data)
+
+const createChat = (data) => axios.post(URL + "supervisors-chat-service/", data)
+
+const addNewChat = (data) => axios.patch(URL + "supervisors-chat-service/", data)
+
+const viewChatByGroup = (data) => axios.get(URL + "supervisors-chat-view-group/" + data)
+
+const viewChatBySupervisorId = (data) => axios.get(URL + "supervisors-chat-view/" + data)
+
+const setSupervisorRequestStatus = (data) => axios.patch(URL + "supervisors-requests-status/", data)
+
+export default {
+    downloadPDF, createSupervisor, createTopicRequest, validateSupervisor, getSupervisorByField,
+    getTopicRequestBySupervisor, createChat, addNewChat, viewChatByGroup, viewChatBySupervisorId, setSupervisorRequestStatus
+}
