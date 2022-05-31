@@ -7,16 +7,29 @@ export default function Supervisor() {
     const [supervisor, setSupervisor] = useState([]);
     const [stat, setStat] = useState(false)
 
+    const [len, setLen] = useState(0);
+    const [current, setCurrent] = useState([]);
+    const [firsIndex, setFirsIndex] = useState(0);
+    const [recordsPerPage, setRecordPerPage] = useState(1);
+    const [lastIndex, setLastIndex] = useState(recordsPerPage);
+    const [numberOfRecords, setNumberOfRecords] = useState(0)
+    const [currentPage, setCurrentPage] = useState(1)
+
+
+
     useEffect(() => {
         const session = JSON.parse(sessionStorage.getItem("SUPERVISOR"))
         setSupervisor(session);
 
         SupervisorServices.getTopicRequestBySupervisor(session._id).then(res => {
             setTopicRegistraion(res.data)
+            setLen((res.data).length)
+            setNumberOfRecords(Math.ceil((res.data).length / recordsPerPage))
+            setCurrent(res.data.slice(firsIndex, lastIndex))
+
         })
         setStat(false)
-    }, [stat])
-
+    }, [stat, firsIndex])
 
     const createChat = (group) => {
         /// need to get from topic registrtion
@@ -87,6 +100,29 @@ export default function Supervisor() {
 
     }
 
+    const nextPage = (e) => {
+        e.preventDefault()
+
+        if (lastIndex != len) {
+            setCurrentPage(currentPage + 1)
+
+            setFirsIndex(lastIndex)
+            setLastIndex(lastIndex + recordsPerPage)
+        }
+
+    }
+
+    const previousPage = (e) => {
+        e.preventDefault()
+
+        if (firsIndex != 0) {
+            setCurrentPage(currentPage - 1)
+
+            setFirsIndex(firsIndex - recordsPerPage)
+            setLastIndex(firsIndex)
+        }
+
+    }
 
     return (
         <div className="container" style={{ marginTop: "20px" }}>
@@ -115,7 +151,7 @@ export default function Supervisor() {
                         </thead>
                         <tbody>
                             {
-                                topicRegistraionRequest.map((obj, index) => {
+                                current.map((obj, index) => {
                                     return (
                                         <tr key={obj._id}>
                                             <th scope="row">{index + 1}</th>
@@ -140,6 +176,12 @@ export default function Supervisor() {
                         </tbody>
 
                     </table>
+                    <div className="col">
+                        <span>{currentPage + " out of  " + numberOfRecords}</span><br />
+                        <button onClick={previousPage} disabled={firsIndex != 0 ? false : true}>BACK</button>
+                        <button onClick={nextPage} disabled={lastIndex != len ? false : true}>NEXT</button>
+                    </div>
+
                 </div>
             </div>
         </div >
