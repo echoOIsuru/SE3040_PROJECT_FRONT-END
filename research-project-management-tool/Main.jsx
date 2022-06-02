@@ -28,6 +28,10 @@ import Allfiles from "./Components/Students/viewfile";
 import ViewTopicRequest from "./Components/Students/viewTopicRequest";
 import ViewGroup from "./Components/Students/view_group_details";
 import Allsubmition from "./Components/Students/view_Submition";
+import PanelMemmberTopic from "./Components/Students/panelMemberTopic";
+import PanelMemmberPpt from "./Components/Students/panalMemberFinalPpt";
+import DSubmition from "./Components/Students/documentSubmition";
+import AllDsubmition from "./Components/Students/viewDocumentSubmition";
 
 const Main = () => {
    return (
@@ -45,9 +49,11 @@ const Main = () => {
            <Route path="/view_upload" element={<Allfiles/>}/>
            <Route path="/d" element={<Download/>}/>
            <Route path="/submition" element={<Submition/>}/>
+           <Route path="/Dsubmition" element={<DSubmition/>}/>
            <Route path="/view_submition" element={<Allsubmition/>}/>
-           
- 
+           <Route path="/view_Dsubmition" element={<AllDsubmition/>}/>
+           <Route path="/view_supervisor_topic" element={<PanelMemmberTopic/>}/>
+           <Route path="/view_Final_presentation_feedback" element={<PanelMemmberPpt/>}/>
          
          <Route path="/admins" element={<Admin />} />
          <Route path="/panelMember" element={<PanelMembers />} />

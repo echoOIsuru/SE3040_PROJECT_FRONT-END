@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Allsubmition (p) {
+export default function AllDsubmition (p) {
   const [files, setFiles] = useState([]);
 
   function getFile() {
-    axios.get("http://localhost:8090/submition/get",{withCredentials:true}).then((res) => {
+    axios.get("http://localhost:8090/Dsubmition/get",{withCredentials:true}).then((res) => {
       console.log(res.data);
       setFiles(res.data)
     })
@@ -19,7 +19,7 @@ export default function Allsubmition (p) {
 
   function deleteFile(id) {
     if (window.confirm('Are you sure do you whant to delete this file?')) {
-      axios.delete("http://localhost:8090/submition/file-delete/" + id).then((res) => {
+      axios.delete("http://localhost:8090/Dsubmition/file-delete/" + id).then((res) => {
         alert("File deleted");
         getFile();
       })

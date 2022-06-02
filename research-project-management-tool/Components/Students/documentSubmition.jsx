@@ -3,8 +3,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom'
-
-export default function Upload(props) {
+export default function DSubmition(props) {
   const [file, setFile] = useState(null); // state for storing actual image
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
   const [state, setState] = useState({
@@ -57,14 +56,13 @@ export default function Upload(props) {
           formData.append('email',email);
 
           setErrorMsg('');
-          await axios.post(`http://localhost:8090/file/upload`, formData, {
+          await axios.post(`http://localhost:8090/Dsubmition/upload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
           }).then((res) => {
-            navigate("/student_home")
             alert(res.data);
-
+            navigate("/student_home")
           });
           props.history.push('/allfiles');
         } else {
@@ -82,14 +80,14 @@ export default function Upload(props) {
     <React.Fragment>
         <div className="container" >
       <hr/>
-      <h3> Topic Registration File Upload Portal</h3>
+      <h3> Final Document Portal</h3>
       <hr/>
       <br/>
       <Form className="search-form" onSubmit={handleOnSubmit}>
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
         <Row>
           <Col>
-            <Form.Group controlId="title" className="text-light bg-success">
+            <Form.Group controlId="title"className="text-light bg-success">
             <label for="group name">Enter group name or Group ID</label>
               <Form.Control
                 type="text"
@@ -104,10 +102,9 @@ export default function Upload(props) {
         <br/>
         <Row>
           <Col>
-            <Form.Group controlId="email"  className="text-light bg-success">
-            <label for="email">Enter Email</label>
+            <Form.Group controlId="email"className="text-light bg-success">
+            <label for="group name">Enter Email</label>
               <Form.Control
-          
                 type="text"
                 name="email"
                 value={state.email || ''}

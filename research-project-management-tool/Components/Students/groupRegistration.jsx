@@ -45,12 +45,12 @@ export default function AddGroup() {
   }
 
   return (
-    <div className="container" >
+    <div className="container " >
       <h1>Group REGISTRATION</h1>
       <form onSubmit={sendData}>
 
 
-        <div className="from-group" >
+        <div className="text-light bg-secondary" >
           <label for=" group_name">group name</label>
           <input type="text" className="form-control" id=" group_name" placeholder="Enter  group name"
             onChange={(e) => {
@@ -60,7 +60,7 @@ export default function AddGroup() {
         </div>
 
 
-        <div className="from-group">
+        <div className="text-light bg-success">
           <label for="email">Group Leader email</label>
           <input type="text" className="form-control" id="leader" placeholder="Enter group leader email"
             onChange={(e) => {
@@ -72,7 +72,7 @@ export default function AddGroup() {
 
       
 
-        <div className="from-group">
+        <div className="text-light bg-secondary">
           <label for="leader">Group Leader name</label>
           <input type="text" className="form-control" id="leader" placeholder="Enter group leader name"
             onChange={(e) => {
@@ -86,7 +86,7 @@ export default function AddGroup() {
         
    
 
-        <div className="from-group">
+        <div className="text-light bg-success">
           <label for=" member1"> first  member  name</label>
           <input type="text" className="form-control" id=" member1" placeholder="Enter  first member name"
             onChange={(e) => {
@@ -94,7 +94,7 @@ export default function AddGroup() {
             }} required={true} />
 
         </div>
-        <div className="from-group">
+        <div className="text-light bg-secondary">
           <label for=" member2"> second member name</label>
           <input type="text" className="form-control" id=" member2" placeholder="Enter  second member name"
             onChange={(e) => {
@@ -104,7 +104,7 @@ export default function AddGroup() {
         </div>
 
 
-        <div className="from-group">
+        <div className="text-light bg-success">
           <label for=" member3">third member name</label>
           <input type="text" className="form-control" id=" member3" placeholder="Enter  third member name"
             onChange={(e) => {
@@ -115,7 +115,7 @@ export default function AddGroup() {
         
 
 
-        <div className="from-group">
+        <div className="text-light bg-secondary">
           <label for=" leader_nic"> leader_nic</label>
           <input type="text" className="form-control" id=" leader_nic" placeholder="Enter  leader nic"
             onChange={(e) => {
@@ -124,7 +124,7 @@ export default function AddGroup() {
 
         </div>
         
-        <div className="from-group">
+        <div className="text-light bg-success">
           <label for=" member1_nic">first member nic</label>
           <input type="text" className="form-control" id=" member1_nic" placeholder="Enter  first member nic"
             onChange={(e) => {
@@ -132,7 +132,7 @@ export default function AddGroup() {
             }} required={true} />
 
         </div>
-        <div className="from-group">
+        <div className="text-light bg-secondary">
           <label for=" member2_nic">second member nic</label>
           <input type="text" className="form-control" id=" member2_nic" placeholder="Enter  second member nic"
             onChange={(e) => {
@@ -142,7 +142,7 @@ export default function AddGroup() {
         </div>
 
 
-        <div className="from-group">
+        <div className="text-light bg-success">
           <label for=" member3_nic">third member nic</label>
           <input type="text" className="form-control" id=" member3_nic" placeholder="Enter  third member nic"
             onChange={(e) => {
@@ -154,7 +154,8 @@ export default function AddGroup() {
 
 
         <br />
-        <button type="submit" className="btn btn-primary">Submit</button>
+
+        <button type="submit"  className="btn btn-success" >Submit</button>
       </form>
 
     </div>

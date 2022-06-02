@@ -80,14 +80,15 @@ export default function Submition(props) {
     <React.Fragment>
         <div className="container" >
       <hr/>
-      <h3> Research Upload Portal</h3>
+      <h3> Final presentation Portal</h3>
       <hr/>
       <br/>
       <Form className="search-form" onSubmit={handleOnSubmit}>
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
         <Row>
           <Col>
-            <Form.Group controlId="title">
+            <Form.Group controlId="title"className="text-light bg-success">
+            <label for="group name">Enter group name or Group ID</label>
               <Form.Control
                 type="text"
                 name="title"
@@ -101,7 +102,8 @@ export default function Submition(props) {
         <br/>
         <Row>
           <Col>
-            <Form.Group controlId="email">
+            <Form.Group controlId="email"className="text-light bg-success">
+            <label for="group name">Enter Email</label>
               <Form.Control
                 type="text"
                 name="email"
