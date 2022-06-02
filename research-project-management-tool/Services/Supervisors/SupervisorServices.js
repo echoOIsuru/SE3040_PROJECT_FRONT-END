@@ -28,7 +28,17 @@ const viewChatBySupervisorId = (data) => axios.get(URL + "supervisors-chat-view/
 
 const setSupervisorRequestStatus = (data) => axios.patch(URL + "supervisors-requests-status/", data)
 
+const getAllGroups = () => axios.get(URL + "supervisors-all-groups")
+
+const getGroupByStudentNIC = (data) => axios.get(URL + "supervisors-student-nic/" + data)
+
+const getSuperviosrById = (data) => axios.get(URL + "supervisors/" + data)
+
+const getTopicRequestByGroupRecordID = (data) => axios.get(URL + "supervisors-topic-by-group/" + data);
+
 export default {
     downloadPDF, createSupervisor, createTopicRequest, validateSupervisor, getSupervisorByField,
-    getTopicRequestBySupervisor, createChat, addNewChat, viewChatByGroup, viewChatBySupervisorId, setSupervisorRequestStatus
+    getTopicRequestBySupervisor, createChat, addNewChat, viewChatByGroup, viewChatBySupervisorId,
+    setSupervisorRequestStatus, getAllGroups, getGroupByStudentNIC, getSuperviosrById,
+    getTopicRequestByGroupRecordID
 }

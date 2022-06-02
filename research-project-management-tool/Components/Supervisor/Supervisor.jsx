@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SupervisorServices from "../../Services/Supervisors/SupervisorServices";
+import PopupWindow from "./SupervisorComponents/PopupWindow";
 
 export default function Supervisor() {
 
@@ -17,6 +18,7 @@ export default function Supervisor() {
 
 
 
+
     useEffect(() => {
         const session = JSON.parse(sessionStorage.getItem("SUPERVISOR"))
         setSupervisor(session);
@@ -31,37 +33,53 @@ export default function Supervisor() {
         setStat(false)
     }, [stat, firsIndex])
 
-    const createChat = (group) => {
+    const createChat = (obj) => {
         /// need to get from topic registrtion
-        group = {
-            group_id: "GROUP_2",
-            group_name: "POWER2 GROUP",
-            leader: "12312asdasd",
-            member1: "member1",
-            member2: "member2",
-            member3: "member3",
+
+        let groups = {
+            group_id: obj.s_group.group_name,
+            group_name: obj.s_group.group_name,
+            leader: obj.s_group.leader,
+            member1: obj.s_group.member1,
+            member2: obj.s_group.member2,
+            member3: obj.s_group.member3,
             supervisor_id: supervisor._id,
             chat_id: "chatid00222"
         }
 
 
-        SupervisorServices.viewChatByGroup(group.group_id).then(res => {
+        SupervisorServices.viewChatByGroup(groups.group_id).then(res => {
             let val = (res.data).length
             if (val == 0) {
+
+                const currentdate = new Date()
+
+                const date = currentdate.getDate() + "-"
+                    + (currentdate.getMonth() + 1) + "-"
+                    + currentdate.getFullYear()
+
+                const time = + currentdate.getHours() + ":"
+                    + currentdate.getMinutes() + ":"
+                    + currentdate.getSeconds();
+
+
                 const temp = {
-                    group_id: group.group_id,
+                    group_id: groups.group_id,
                     data: {
                         name: "supervisor",
                         chat: "Welcome to the chat",
-                        date: new Date(),
+                        date: date,
+                        time: time
                     },
                     supervisor_id: supervisor._id,
-                    group_data: group
+                    group_data: groups
                 }
 
                 SupervisorServices.createChat(temp).then(res => {
-                    console.log(res.data)
+                    //console.log(res.data)
+                    window.alert("Group chat created")
                 })
+
             } else {
                 window.alert("Chat Group already created")
             }
@@ -124,6 +142,9 @@ export default function Supervisor() {
 
     }
 
+
+
+
     return (
         <div className="container" style={{ marginTop: "20px" }}>
             <div className="row">
@@ -161,9 +182,9 @@ export default function Supervisor() {
                                             <td>{obj.student_mobile}</td>
                                             <td>{obj.field}</td>
                                             <td>{obj.topic}</td>
-                                            <td>{obj.topic_details}</td>
+                                            <td>{<PopupWindow data={obj} />}</td>
                                             <td>
-                                                <button className="btn btn-warning" onClick={() => createChat("TODO")}>Create Chat</button>
+                                                <button className="btn btn-warning" onClick={() => createChat(obj)}>Create Chat</button>
                                                 {obj.s_status == "Pending" && <button className="btn btn-danger" onClick={() => rejectRequest(obj)}>Reject</button>}
                                                 {obj.s_status == "Pending" && <button className="btn btn-success" onClick={() => acceptRequest(obj)}>Accept</button>}
                                                 {obj.s_status == "Accepted" && <button disabled className="btn btn-success" onClick={() => acceptRequest(obj)}>Accepted</button>}
@@ -180,6 +201,9 @@ export default function Supervisor() {
                         <span>{currentPage + " out of  " + numberOfRecords}</span><br />
                         <button onClick={previousPage} disabled={firsIndex != 0 ? false : true}>BACK</button>
                         <button onClick={nextPage} disabled={lastIndex != len ? false : true}>NEXT</button>
+
+
+
                     </div>
 
                 </div>
