@@ -15,10 +15,10 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const url = "http://localhost:8090/login";
-			const { data: res } = await axios.post(url, data,{withCredentials:true});
+			const { data: res } = await axios.post(url, data, { withCredentials: true });
 			localStorage.setItem("token", res.data);
+
 			window.location = "/student_home";
-			
 		} catch (error) {
 			if (
 				error.response &&

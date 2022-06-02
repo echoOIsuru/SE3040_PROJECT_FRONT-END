@@ -4,18 +4,7 @@ import '../chat.css'
 
 function GroupChatStudent() {
 
-    const [groups, setGroups] = useState(
-        {
-            group_id: "GROUP_3",
-            group_name: "POWER GROUP",
-            leader: "12312asdasd",
-            member1: "member1",
-            member2: "member2",
-            member3: "member3",
-            supervisor_id: "123WWWWWWWW",
-            chat_id: "chatid00222"
-        }
-    )
+    const [groups, setGroups] = useState({})
 
     const [chats, setChats] = useState([])
 
@@ -26,6 +15,25 @@ function GroupChatStudent() {
 
     useEffect(() => {
         setMsg("")
+
+
+        const student = JSON.parse(sessionStorage.getItem("STUDENT_DATA"))
+
+
+        SupervisorServices.getGroupByStudentNIC(student[0].nic).then(res => {
+            // console.log(res.data, "FINAL_GROUP")
+
+            setGroups({
+                group_id: res.data.group_name,
+                group_name: res.data.group_name,
+                leader: res.data.leader,
+                member1: res.data.member1,
+                member2: res.data.member2,
+                member3: res.data.member3,
+                supervisor_id: " ",
+                chat_id: "chatid00222"
+            })
+        })
 
         //to update group chat
         SupervisorServices.viewChatByGroup(groups.group_id).then(res => {
