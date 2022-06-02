@@ -1,0 +1,101 @@
+/*Adding Button*/
+.adminpayRi button{
+    padding: 0.5rem;
+    background-color: #4f7ccf;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 650;
+    border-radius: 5px;
+    font-size: 12px;
+    color: aliceblue;
+    width: 200px;
+    height: 50px;
+}
+
+.adminpayRi button:hover{
+    background: #0651dd;
+    transform: scale(1.01);
+    
+}
+/*Modify Button*/
+
+.adminPromoRi button{
+    padding: 0.5rem;
+    background-color: #aa5aaa;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 650;
+    border-radius: 5px;
+    font-size: 12px;
+    color: aliceblue;
+    width: 200px;
+    height: 50px;
+}
+
+.adminPromoRi button:hover{
+    background:  #d409d4;
+    transform: scale(1.01);
+    
+}
+.adminpayRi , .adminPromoRi {
+    display:inline-block;
+}
+
+/*report Button*/
+
+.adminReportRi button{
+    padding: 0.5rem;
+    background-color: #51a088;
+    border: none;
+    transition: 0.2s;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 650;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 420px;
+    height: 50px;
+}
+
+.adminReportRi button:hover{
+    background: #0dca91;
+    transform: scale(1.01);
+    
+}
+
+.PayAdminHeading h1 {
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+
+  }
+  .PayAdminHeading h1:before {
+    width: 100px;
+    height: 10px;
+    display: block;
+    content: "";
+    position: relative;
+    bottom: -79.7px;
+    left: 50%;
+    margin-left: -50px;
+    background-color: #e03f16;
+  }
+  .PayAdminHeading h1:after {
+    width: 350px;
+    height: 3px;
+    display: block;
+    content: "";
+    position: relative;
+    margin-top: 25px;
+    left: 50%;
+    margin-left: -175px;
+    background-color: #a7442b;
+  }
