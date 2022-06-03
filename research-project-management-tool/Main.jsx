@@ -9,6 +9,9 @@ import {
    Route,
  } from "react-router-dom";
 import PanelMemberRegister from "./Components/PanelMembers/PanelMemberRegister";
+import ViewPanel from "./Components/PanelMembers/ViewPanel";
+import TopicFeedback from "./Components/PanelMembers/TopicFeedback";
+import PptFeedback from "./Components/PanelMembers/PptFeedback";
 
 const Main = () => {
    return (
@@ -19,6 +22,9 @@ const Main = () => {
             <Route path="/students" element={<Student/>}/>
             <Route path="/supervisors" element={<Supervisor/>}/>
             <Route path="/panelMemberReg" element={<PanelMemberRegister/>}/>
+            <Route path="/viewPanel" element={<ViewPanel/>}/>
+            <Route path="/topic-feedback" element={<TopicFeedback/>}/>
+            <Route path="/ppt-feedback" element={<PptFeedback/>}/>
          </Routes>
    )
 }
