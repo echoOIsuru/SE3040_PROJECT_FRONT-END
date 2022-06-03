@@ -7,6 +7,7 @@ import PopupFeedback from './SupervisorComponents/PopupFeedback';
 function SupervisorDocumentEvaluation() {
     const [documentSubmission, setDocumentSubmission] = useState([]);
     const [loading, setLoding] = useState(false);
+    const [loading2, setLoding2] = useState(false);
     const [supervisor, setSupervisor] = useState([]);
     const [see, setSee] = useState(false);
 
@@ -55,7 +56,12 @@ function SupervisorDocumentEvaluation() {
     }, [])
 
     const viewData = () => {
-        setSee(true)
+        setLoding2(true)
+        setTimeout(() => {
+            setSee(true)
+            setLoding2(false)
+        }, 1000)
+
     }
 
     const handleDownloadPDF = async (e) => {
@@ -108,7 +114,23 @@ function SupervisorDocumentEvaluation() {
                             see == false ?
                                 <>
                                     <center>
-                                        <button className='btn btn-danger' onClick={() => { viewData() }}>Load submissions</button>
+                                        <button className='btn btn-danger' onClick={() => { viewData() }}>
+                                            {loading2 && (
+                                                <i
+                                                    className="fa fa-refresh fa-spin"
+                                                    style={{ marginRight: "5px" }}
+                                                />
+                                            )}
+                                            {loading2 && <span>
+                                                Submissions are loading... </span>}
+                                            {!loading2 && <span>
+                                                Load submissions </span>}
+
+                                            <i className="bi bi-download"></i>
+
+
+
+                                        </button>
                                     </center>
                                 </> :
                                 <table className="table">

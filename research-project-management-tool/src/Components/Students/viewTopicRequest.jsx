@@ -5,7 +5,7 @@ export default function ViewTopicRequest(p) {
   const [students, setStudent] = useState([]);
 
   function getStudent() {
-    axios.get("http://localhost:8090/topic/get",{withCredentials:true}).then((res) => {
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/topic/get", { withCredentials: true }).then((res) => {
       console.log(res.data);
       setStudent(res.data)
     })
@@ -19,7 +19,7 @@ export default function ViewTopicRequest(p) {
   }, [])
 
 
- 
+
   return (
 
 
@@ -33,9 +33,9 @@ export default function ViewTopicRequest(p) {
             <th >Topic</th>
             <th>Group Leader NIC</th>
             <th>Email</th>
-            
 
- 
+
+
 
           </tr>
 
@@ -48,9 +48,9 @@ export default function ViewTopicRequest(p) {
 
               <td >{val.topic}</td>
               <td>{val.nic}</td>
-              <td>{val.email}</td> 
-              
-             
+              <td>{val.email}</td>
+
+
 
             </tr>
           )}
