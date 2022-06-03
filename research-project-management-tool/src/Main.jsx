@@ -30,6 +30,11 @@ import ViewGroup from "./Components/Students/view_group_details";
 import Allsubmition from "./Components/Students/view_Submition";
 import CoSupervisorRequest from "./Components/Supervisor/StudentPages/CoSupervisorRequest";
 
+import PanelMemberRegister from "./Components/PanelMembers/PanelMemberRegister";
+import ViewPanel from "./Components/PanelMembers/ViewPanel";
+import TopicFeedback from "./Components/PanelMembers/TopicFeedback";
+import PptFeedback from "./Components/PanelMembers/PptFeedback";
+
 const Main = () => {
    return (
       <Routes>
@@ -63,6 +68,15 @@ const Main = () => {
          <Route path="/supervisors/co-supervisor/student-requests" element={<CoSupervisorRequest />} />
          <Route path="/supervisors/document-evaluations" element={<SupervisorDocumentEvaluation />} />
          <Route path="/supervisors/document-feedbacks" element={<SupervisorFeedback />} />
+
+
+
+         <Route path="/panelMember" element={<PanelMembers/>}/>
+         <Route path="/panelMemberReg" element={<PanelMemberRegister/>}/>
+         <Route path="/viewPanel" element={<ViewPanel/>}/>
+         <Route path="/topic-feedback" element={<TopicFeedback/>}/>
+         <Route path="/ppt-feedback" element={<PptFeedback/>}/>
+
       </Routes>
    )
 }
