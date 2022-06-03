@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function AllStudent(p) {
   const [students, setStudent] = useState([]);
 
   function getStudent() {
-    axios.get("http://localhost:8090/student/get", { withCredentials: true }).then((res) => {
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/student/get", { withCredentials: true }).then((res) => {
       console.log(res.data);
       sessionStorage.setItem("STUDENT_DATA", JSON.stringify(res.data))
       setStudent(res.data)

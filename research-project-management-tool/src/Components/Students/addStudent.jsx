@@ -9,12 +9,12 @@ export default function AddStudent() {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
-   const [email, setEmail] = useState(""); 
-   const [nic, setNic] = useState("");
-   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [nic, setNic] = useState("");
+  const [password, setPassword] = useState("");
 
 
-   const navigate = useNavigate();
+  const navigate = useNavigate();
   function sendData(e) {
     e.preventDefault();
     if (window.confirm('Do you whant to add this new student?')) {
@@ -28,9 +28,9 @@ export default function AddStudent() {
         email,
         phone,
         password,
-        
+
       }
-      axios.post("http://localhost:8090/student/add", newStudent).then((res) => {
+      axios.post("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/student/add", newStudent).then((res) => {
         alert(res.data)
         navigate("/");
       }).catch((err) => {
@@ -51,7 +51,7 @@ export default function AddStudent() {
             onChange={(e) => {
 
               setName(e.target.value);
-            }}required={true} />
+            }} required={true} />
         </div>
 
 
@@ -64,7 +64,7 @@ export default function AddStudent() {
               setAge(e.target.value);
             }}
 
-            required={true}/>
+            required={true} />
         </div>
 
         <div className="from-group">
@@ -72,7 +72,7 @@ export default function AddStudent() {
           <input type="text" className="form-control" id="nic" placeholder="Enter Student nic"
             onChange={(e) => {
               setNic(e.target.value);
-            }} required={true}/>
+            }} required={true} />
 
         </div>
 
@@ -82,17 +82,17 @@ export default function AddStudent() {
           <input type="text" className="form-control" id="gender" placeholder="Enter Student gender"
             onChange={(e) => {
               setGender(e.target.value);
-            }} required={true}/>
+            }} required={true} />
 
         </div>
 
-        
+
         <div className="from-group">
           <label for="phone">student phone number</label>
           <input type="text" className="form-control" id="phone" placeholder="Enter Student phone number"
             onChange={(e) => {
               setPhone(e.target.value);
-            }} required={true}/>
+            }} required={true} />
 
         </div>
 
@@ -102,7 +102,7 @@ export default function AddStudent() {
           <input type="text" className="form-control" id="email" placeholder="Enter Student email"
             onChange={(e) => {
               setEmail(e.target.value);
-            }}pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required={true} />
+            }} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required={true} />
 
         </div>
         <div className="from-group">
