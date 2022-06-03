@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PanelMemberServices from "../../temp/PanelMemberServices";
+import PanelMemberServices from "../../Services/PanelMembers/PanelMemberServices";
 
 export default function PanelMemberRegister(){
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import PanelMemberService from '../../temp/PanelMemberServices';
+import PanelMemberService from '../../Services/PanelMembers/PanelMemberServices';
 
 export default function ViewPanel(){
 
@@ -150,32 +150,6 @@ export default function ViewPanel(){
 
     })
 
-    // for table
-    const nextPage = (e) => {
-        e.preventDefault()
-
-        console.log(current);
-
-        if (lastIndex != len) {
-            setCurrentPage(currentPage + 1)
-
-            setFirsIndex(lastIndex)
-            setLastIndex(lastIndex + recordsPerPage)
-        }
-
-    }
-
-    const previousPage = (e) => {
-        e.preventDefault()
-
-        if (firsIndex != 0) {
-            setCurrentPage(currentPage - 1)
-
-            setFirsIndex(firsIndex - recordsPerPage)
-            setLastIndex(firsIndex)
-        }
-
-    }
 
     // 
 
@@ -192,13 +166,7 @@ export default function ViewPanel(){
         .then((data) => {
             window.alert("Rejected record was deleted !");
                 // for table
-    // const [len, setLen] = useState(0);
-    // const [current, setCurrent] = useState([]);
-    // const [firsIndex, setFirsIndex] = useState(0);
-    // const [recordsPerPage, setRecordPerPage] = useState(1);
-    // const [lastIndex, setLastIndex] = useState(recordsPerPage);
-    // const [numberOfRecords, setNumberOfRecords] = useState(0)
-    // const [currentPage, setCurrentPage] = useState(1)
+
     setLastIndex(lastIndex-1);
     setFirsIndex(firsIndex+1);
     setCurrent(current.slice(firsIndex+1, lastIndex-1));

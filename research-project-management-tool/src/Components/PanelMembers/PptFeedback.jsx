@@ -1,47 +1,38 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import fileDownload from "js-file-download";
 import { useNavigate } from 'react-router-dom';
-import PanelMemberServices from '../../temp/PanelMemberServices';
+import PanelMemberServices from '../../Services/PanelMembers/PanelMemberServices';
 
 export default function PptFeedback() {
-        // Download the finalized topic details document
-        const downldMarking = () => {
-            var oReq = new XMLHttpRequest();
-            var URLToPDF = "https://courseweb.sliit.lk/pluginfile.php/393828/mod_resource/content/1/SE3040-2021-S1-Assesment02-Group-Project.pdf";
-    
-            oReq.open("GET", URLToPDF, true);
-    
-            oReq.responseType = "blob";
-    
-            oReq.onload = function() {
-                var file = new Blob([oReq.response], { 
-                    type: 'application/pdf' 
-                });
-                
-                saveAs(file, "TopicEvaluation_Marking.pdf");
-            };
-    
-            oReq.send();
-        }
 
-    // Download the finalized topic details document
-    const downld = () => {
-        var oReq = new XMLHttpRequest();
-        var URLToPDF = "https://courseweb.sliit.lk/pluginfile.php/393828/mod_resource/content/1/SE3040-2021-S1-Assesment02-Group-Project.pdf";
+    const [details, setDetails] = useState([]);
 
-        oReq.open("GET", URLToPDF, true);
+    useEffect(() => {
+        let groupId = sessionStorage.getItem("GROUP_ID");
+        groupId = JSON.parse(groupId);
+        setDetails(groupId);
+        console.log(">>>>>>>", groupId);
 
-        oReq.responseType = "blob";
+    },[])
 
-        oReq.onload = function() {
-            var file = new Blob([oReq.response], { 
-                type: 'application/pdf' 
-            });
-            
-            saveAs(file, "Topic_Details.pdf");
-        };
-
-        oReq.send();
+    // Download marking scheme
+    const downldMarking = async(event) => {
+        event.preventDefault();
+        // const { data } = await PanelMemberServices.markingDownload();
+        // fileDownload(data, "Topic_evaluate_marking.pdf")
+        const { data } = await PanelMemberServices.markingDownload(details._id);
+        fileDownload(data, "Final_presentation_marking.pdf");
     }
+
+    // Download the final presentation
+    const downld = async(event) => {
+        event.preventDefault();
+        // const { data } = await PanelMemberServices.topicDownload();
+        // fileDownload(data, "Finalized_topic_details.pdf")
+        const { data } = await PanelMemberServices.topicDownload(details._id);
+        fileDownload(data, details.title + "_final_ppt.pdf");
+    }
+
 
     // Submit feedback
     const navigate = useNavigate();
@@ -58,8 +49,8 @@ export default function PptFeedback() {
         event.preventDefault();
         console.log(feedback);
 
-        let groupId = sessionStorage.getItem("GROUP_ID");
-        feedback.groupId = groupId;
+        // let groupId = sessionStorage.getItem("GROUP_ID");
+        feedback.groupId = details.title;
 
         PanelMemberServices.setFinalPptData(feedback)
             .then((data) => {

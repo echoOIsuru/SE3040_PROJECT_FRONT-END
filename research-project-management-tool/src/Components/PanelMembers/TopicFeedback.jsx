@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import fileDownload from "js-file-download";
 import { useNavigate } from "react-router-dom";
-import PanelMemberServices from "../../temp/PanelMemberServices";
+import PanelMemberServices from "../../Services/PanelMembers/PanelMemberServices";
 
 export default function TopicFeedback() {
 
@@ -15,11 +15,13 @@ export default function TopicFeedback() {
 
     },[])
 
-    // Download finalized presentation
+    // Download marking scheme
     const downldMarking = async(event) => {
         event.preventDefault();
-        const { data } = await PanelMemberServices.markingDownload();
-        fileDownload(data, "Topic_evaluate_marking.pdf")
+        // const { data } = await PanelMemberServices.markingDownload();
+        // fileDownload(data, "Topic_evaluate_marking.pdf")
+        const { data } = await PanelMemberServices.markingDownload(details._id);
+        fileDownload(data, "Topic_evaluate_marking.pdf");
     }
 
     // Download the finalized topic details document

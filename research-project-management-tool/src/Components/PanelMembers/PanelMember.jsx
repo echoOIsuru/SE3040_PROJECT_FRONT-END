@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import PanelMemberServices from "../../temp/PanelMemberServices";
+import PanelMemberServices from "../../Services/PanelMembers/PanelMemberServices";
 
 export default function PanelMemberProfile () {
 
