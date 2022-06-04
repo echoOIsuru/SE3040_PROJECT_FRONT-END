@@ -19,7 +19,7 @@ export default function AddGroup() {
    const navigate = useNavigate();
   function sendData(e) {
     e.preventDefault();
-    if (window.confirm('Do you whant to add this new student?')) {
+    if (window.confirm('Do you whant to create new group?')) {
 
       const newgroup = {
 

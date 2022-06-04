@@ -30,7 +30,7 @@ export default function Download  (p) {
 
 
     <div className="container">
-      <h1>Topic Registration Submision</h1>
+      <h1>Download Templates</h1>
       <br />
       <table className="table ">
         <thead className="table-dark">
