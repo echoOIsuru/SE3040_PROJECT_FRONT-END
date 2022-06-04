@@ -70,9 +70,9 @@ const Main = () => {
             <Route path="/submition" element={<><Navbar /><Submition /></>} />
             <Route path="/view_submition" element={<><Navbar /><Allsubmition /></>} />
 
-            <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} />
+            {/* <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} /> */}
 
-            <Route path="/panelMember2" element={<PanelMembers />} />
+            {/* <Route path="/panelMember2" element={<PanelMembers />} /> */}
             <Route path="/supervisors" element={<><Navbar /><Supervisor /></>} />
             <Route path="/supervisors/register" element={<><Navbar /><SupervisorRegister /></>} />
             <Route path="/supervisors/login" element={<><SupervisorLogin /></>} />
@@ -84,10 +84,10 @@ const Main = () => {
             <Route path="/supervisors/document-feedbacks" element={<><Navbar /><SupervisorFeedback /></>} />
 
             <Route path="/panelMember" element={<PanelMembers />} />
-            <Route path="/panelMemberReg" element={<PanelMemberRegister />} />
-            <Route path="/viewPanel" element={<ViewPanel />} />
-            <Route path="/topic-feedback" element={<TopicFeedback />} />
-            <Route path="/ppt-feedback" element={<PptFeedback />} />
+            <Route path="/panelMemberReg" element={<><Navbar /><PanelMemberRegister /></>} />
+            <Route path="/viewPanel" element={<><Navbar /><ViewPanel /></>} />
+            <Route path="/topic-feedback" element={<><Navbar /><TopicFeedback /></>} />
+            <Route path="/ppt-feedback" element={<><Navbar /><PptFeedback /></>} />
 
 
             <Route path="/admin/login" element={<AdminLogin />} />

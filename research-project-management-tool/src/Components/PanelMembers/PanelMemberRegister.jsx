@@ -40,27 +40,27 @@ export default function PanelMemberRegister(){
                                 <br />
                                 <div className="form-group">
                                     <label>Full name : </label>
-                                    <input type="text" name="name" value={inputs.name || ""} onChange={handleChange} className="form-control"></input>
+                                    <input type="text" name="name" value={inputs.name || ""} onChange={handleChange} className="form-control" style={{width:"600px"}} required ></input>
                                 </div>
                                 <div className="form-group">
                                     <label>Email address : </label>
-                                    <input type="email" name="email" value={inputs.email || ""} onChange={handleChange} className="form-control"></input>
+                                    <input type="email" name="email" value={inputs.email || ""} onChange={handleChange} className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
                                     <label>Interested research field : </label>
-                                    <input type="text" name="research" value={inputs.research || ""} onChange={handleChange} className="form-control"></input>
+                                    <input type="text" name="research" value={inputs.research || ""} onChange={handleChange} className="form-control" style={{width:"600px"}} required ></input>
                                 </div>
                                 <div className="form-group">
                                     <label>Phone number : </label>
-                                    <input type="tel" name="phone" value={inputs.phone || ""} onChange={handleChange} className="form-control"></input>
+                                    <input type="tel" name="phone" value={inputs.phone || ""} onChange={handleChange} className="form-control" required></input>
                                 </div>
                                 <div className="form-group">
                                     <label>Username : </label>
-                                    <input type="text" name="username" value={inputs.username || ""} onChange={handleChange} className="form-control"></input>
+                                    <input type="text" name="username" value={inputs.username || ""} onChange={handleChange} className="form-control" style={{width:"600px"}} required ></input>
                                 </div>
                                 <div className="form-group">
                                     <label>Password : </label>
-                                    <input type="password" name="password" value={inputs.password || ""} onChange={handleChange} className="form-control"></input>
+                                    <input type="password" name="password" value={inputs.password || ""} onChange={handleChange} className="form-control" required></input>
                                 </div>
                                 <br /><br />
                                 <div className="form-group">
