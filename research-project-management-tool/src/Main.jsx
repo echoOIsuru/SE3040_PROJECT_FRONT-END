@@ -32,6 +32,11 @@ import CoSupervisorRequest from "./Components/Supervisor/StudentPages/CoSupervis
 import Navbar from "./Nav/Navbar";
 import Footer from "./Nav/Footer";
 
+import PanelMemberRegister from "./Components/PanelMembers/PanelMemberRegister";
+import ViewPanel from "./Components/PanelMembers/ViewPanel";
+import TopicFeedback from "./Components/PanelMembers/TopicFeedback";
+import PptFeedback from "./Components/PanelMembers/PptFeedback";
+
 const Main = () => {
    return (
       <>
@@ -50,8 +55,6 @@ const Main = () => {
             <Route path="/submition" element={<><Navbar /><Submition /></>} />
             <Route path="/view_submition" element={<><Navbar /><Allsubmition /></>} />
 
-
-
             <Route path="/admins" element={<><Navbar /><Admin /></>} />
             <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} />
 
@@ -65,6 +68,12 @@ const Main = () => {
             <Route path="/supervisors/co-supervisor/student-requests" element={<><Navbar /><CoSupervisorRequest /></>} />
             <Route path="/supervisors/document-evaluations" element={<><Navbar /><SupervisorDocumentEvaluation /></>} />
             <Route path="/supervisors/document-feedbacks" element={<><Navbar /><SupervisorFeedback /></>} />
+
+            <Route path="/panelMember" element={<PanelMembers />} />
+            <Route path="/panelMemberReg" element={<PanelMemberRegister />} />
+            <Route path="/viewPanel" element={<ViewPanel />} />
+            <Route path="/topic-feedback" element={<TopicFeedback />} />
+            <Route path="/ppt-feedback" element={<PptFeedback />} />
          </Routes>
 
          <Footer />
