@@ -60,35 +60,60 @@ function SupervisorRegister() {
     return (
         <div className="container">
             <div className="row justify-content-md-center" style={{ marginTop: "50px", marginBottom: "100px" }}>
-                <h1 className="text-center">Supervisor Registration Form</h1>
-                <br /><br /><br />
-                <div className='col-md-5'>
-                    <form className='form-control' onSubmit={createSupervisor}>
-                        <label className="form-label">Name</label>
-                        <input type="text" name="s_name" className='form-control' onChange={handleOnChange} required />
-                        <br />
-                        <label className="form-label">Email address</label>
-                        <input type="email" name="s_email" className='form-control' onChange={handleOnChange} required />
-                        <br />
-                        <label className="form-label">Mobile</label>
-                        <input type="text" name="s_mobile" className='form-control' onChange={handleOnChange} required />
-                        <br />
-                        <label className="form-label">Research Interested Field</label>
-                        <ResearchFields data={data} handleOnChange={handleFiled} />
 
-                        {/* <input type="submit" value="Register"/> */}
+                <div className='col-md-10'>
 
-                        <label className="form-label">Password</label>
-                        <input type="password" name="password" className='form-control' onChange={handleOnChange} required />
-                        <br />
 
-                        <label className="form-label">Re Enter Password</label>
-                        <input type="password" name="re_password" className='form-control' onChange={handleOnChange} required />
-                        <br />
-                        <center>
-                            <input type="submit" value="Register" className="btn btn-dark " />
-                        </center>
-                    </form>
+
+
+
+                    <div class="col">
+                        <div class="card card-registration my-4">
+                            <div class="row g-0">
+                                <div class="col-xl-6 d-none d-xl-block">
+                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                                        alt="Sample photo" class="img-fluid"
+                                    />
+                                </div>
+                                <div class="col-xl-6">
+                                    <br />
+                                    <div class="text-center text-black">
+                                        <h3 class="mb-5 text-uppercase">Supervisor Registration Form</h3>
+                                    </div>
+                                    <div style={{ marginTop: "-40px", padding: "50px" }}>
+                                        <form className='form-control' style={{ padding: "10px" }} onSubmit={createSupervisor}>
+                                            <label className="form-label">Name</label>
+                                            <input type="text" name="s_name" className='form-control' onChange={handleOnChange} required />
+                                            <br />
+                                            <label className="form-label">Email address</label>
+                                            <input type="email" name="s_email" className='form-control' onChange={handleOnChange} required />
+                                            <br />
+                                            <label className="form-label">Mobile</label>
+                                            <input type="text" name="s_mobile" className='form-control' onChange={handleOnChange} required />
+                                            <br />
+                                            <label className="form-label">Research Interested Field</label>
+                                            <ResearchFields data={data} handleOnChange={handleFiled} />
+
+                                            <label className="form-label">Password</label>
+                                            <input type="password" name="password" className='form-control' onChange={handleOnChange} required />
+                                            <br />
+
+                                            <label className="form-label">Re Enter Password</label>
+                                            <input type="password" name="re_password" className='form-control' onChange={handleOnChange} required />
+                                            <br />
+                                            <center>
+                                                <input type="submit" value="Register" className="btn btn-warning btn-lg ms-2 " />
+                                            </center>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
                 </div>
             </div>
         </div>
