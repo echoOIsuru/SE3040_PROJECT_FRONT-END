@@ -4,9 +4,21 @@ import {
    Routes,
    Route,
 } from "react-router-dom";
-import Admin from "./Components/Admins/Admin";
-import PanelMembers from "./Components/PanelMembers/PanelMember";
 
+import CreateSubmissionTypes from "./Components/Admins/CreateSubmissionTypes";
+import DocsUploadHandler from "./Components/Admins/DocsUploadHandler";
+import MarkingSchemes from "./Components/Admins/CreateMarkingSchemes";
+import Liststudents from "./Components/Admins/ListStudents";
+import UpdateStudents from "./Components/Admins/UpdateStudents";
+import PanelAllocation from "./Components/Admins/PanelAllocation";
+import ListSupervisor from "./Components/Admins/ListSupervisor";
+import UpdateSupervisor from "./Components/Admins/UpdateSupervisor";
+import ListPanelMembers from "./Components/Admins/ListPanelMembers";
+import UpdatePanelMember from "./Components/Admins/UpdatePanelMembers";
+import AdminInterface from './Components/Admins/AdminInterfaces';
+import ListAllocatedPanels from "./Components/Admins/ListAllocatedPanels";
+
+import PanelMembers from "./Components/PanelMembers/PanelMember";
 import Supervisor from "./Components/Supervisor/Supervisor";
 import GroupChat from './Components/Supervisor/GroupChat';
 import SupervisorRegister from "./Components/Supervisor/SupervisorRegister";
@@ -36,6 +48,9 @@ import PanelMemberRegister from "./Components/PanelMembers/PanelMemberRegister";
 import ViewPanel from "./Components/PanelMembers/ViewPanel";
 import TopicFeedback from "./Components/PanelMembers/TopicFeedback";
 import PptFeedback from "./Components/PanelMembers/PptFeedback";
+import AdminLogin from './Components/Admins/AdminLogin';
+import ListSubmissionTypes from './Components/Admins/ListSubmissionTypes';
+import UpdateSubmissionTypes from './Components/Admins/UpdateSubmssionTypes';
 
 const Main = () => {
    return (
@@ -55,7 +70,6 @@ const Main = () => {
             <Route path="/submition" element={<><Navbar /><Submition /></>} />
             <Route path="/view_submition" element={<><Navbar /><Allsubmition /></>} />
 
-            <Route path="/admins" element={<><Navbar /><Admin /></>} />
             <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} />
 
             <Route path="/panelMember2" element={<PanelMembers />} />
@@ -74,6 +88,24 @@ const Main = () => {
             <Route path="/viewPanel" element={<ViewPanel />} />
             <Route path="/topic-feedback" element={<TopicFeedback />} />
             <Route path="/ppt-feedback" element={<PptFeedback />} />
+
+
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/interface" element={<><Navbar /><AdminInterface /></>} />
+            <Route path="/admin/create/submissionTypes" element={<><Navbar /><CreateSubmissionTypes /></>} />
+            <Route path="/admin/upload/templates" element={<><Navbar /><DocsUploadHandler /></>} />
+            <Route path="/admin/upload/markingSchemes" element={<><Navbar /><MarkingSchemes /></>} />
+            <Route path="/admin/view/students" element={<><Navbar /><Liststudents /></>} />
+            <Route path="/admin/student/edit/:id" element={<><Navbar /><UpdateStudents /></>} />
+            <Route path="/admin/panelAllocation/create" element={<><Navbar /><PanelAllocation /></>} />
+            <Route path="/admin/allocatedPanel/edit/:id" element={<><Navbar /><PanelAllocation /></>} />
+            <Route path="/admin/view/allocatedPanels" element={<><Navbar /><ListAllocatedPanels /></>} />
+            <Route path="/admin/view/supervisors" element={<><Navbar /><ListSupervisor /></>} />
+            <Route path="/admin/supervisor/edit/:id" element={<><Navbar /><UpdateSupervisor /></>} />
+            <Route path="/admin/view/panelMembers" element={<><Navbar /><ListPanelMembers /></>} />
+            <Route path="/admin/panelMembers/edit/:id" element={<><Navbar /><UpdatePanelMember /></>} />
+            <Route path="/admin/view/submissionTypes" element={<><Navbar /><ListSubmissionTypes /></>} />
+            <Route path="/admin/submissionTypes/edit/:id" element={<><Navbar /><UpdateSubmissionTypes /></>} />
          </Routes>
 
          <Footer />

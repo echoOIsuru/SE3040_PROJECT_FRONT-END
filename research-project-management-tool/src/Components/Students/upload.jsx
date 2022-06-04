@@ -54,10 +54,10 @@ export default function Upload(props) {
           const formData = new FormData();
           formData.append('file', file);
           formData.append('title', title);
-          formData.append('email', email);
+          formData.append('email',email);
 
           setErrorMsg('');
-          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/file/upload`, formData, {
+          await axios.post(`http://localhost:8090/file/upload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
@@ -80,82 +80,82 @@ export default function Upload(props) {
 
   return (
     <React.Fragment>
-      <div className="container" >
-        <hr />
-        <h3> Topic Registration File Upload Portal</h3>
-        <hr />
-        <br />
-        <Form className="search-form" onSubmit={handleOnSubmit}>
-          {errorMsg && <p className="errorMsg">{errorMsg}</p>}
-          <Row>
-            <Col>
-              <Form.Group controlId="title">
-                <Form.Control
-                  type="text"
-                  name="title"
-                  value={state.title || ''}
-                  placeholder="Enter Group name"
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <br />
-          <Row>
-            <Col>
-              <Form.Group controlId="email">
-                <Form.Control
-                  type="text"
-                  name="email"
-                  value={state.email || ''}
-                  placeholder="Email"
-                  onChange={handleInputChange}
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-          <br />
-          <div className="upload-section">
-            <Dropzone
-              onDrop={onDrop}
-              onDragEnter={() => updateBorder('over')}
-              onDragLeave={() => updateBorder('leave')}
-            >
-              {({ getRootProps, getInputProps }) => (
-                <div style={{ backgroundColor: "skyBlue", width: '40%' }}{...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
-                  <input {...getInputProps()} style={{ height: "100px", backgroundColor: "skyBlue" }} />
-                  <p>Drag and drop a file OR<button style={{ color: "red", border: "none", backgroundColor: 'transparent' }}>click here</button>to select a file</p>
-                  {file && (
-                    <div>
-                      <strong>Selected file:</strong> {file.name}
-                    </div>
-                  )}
-                </div>
-              )}
-            </Dropzone>
-            {previewSrc ? (
-              isPreviewAvailable ? (
-                <div className="image-preview">
-                  <img className="preview-image" style={{ width: "200px", height: "200px;" }} src={previewSrc} alt="Preview" />
-                </div>
-              ) : (
-                <div className="preview-message">
-                  <br />
-                  <p>No preview available for this file</p>
-                </div>
-              )
-            ) : (
-              <div className="preview-message">
-                <p>Image preview will be shown here after selection</p>
+        <div className="container" >
+      <hr/>
+      <h3> Topic Registration File Upload Portal</h3>
+      <hr/>
+      <br/>
+      <Form className="search-form" onSubmit={handleOnSubmit}>
+        {errorMsg && <p className="errorMsg">{errorMsg}</p>}
+        <Row>
+          <Col>
+            <Form.Group controlId="title">
+              <Form.Control
+                type="text"
+                name="title"
+                value={state.title || ''}
+                placeholder="Enter Group name"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <br/>
+        <Row>
+          <Col>
+            <Form.Group controlId="email">
+              <Form.Control
+                type="text"
+                name="email"
+                value={state.email || ''}
+                placeholder="Email"
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+        <br/>
+        <div className="upload-section">
+          <Dropzone 
+            onDrop={onDrop}
+            onDragEnter={() => updateBorder('over')}
+            onDragLeave={() => updateBorder('leave')}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div style={{backgroundColor:"skyBlue",width:'40%'}}{...getRootProps({ className: 'drop-zone' })} ref={dropRef}>
+                <input {...getInputProps()} style={{height:"100px", backgroundColor:"skyBlue"}}/>
+                <p>Drag and drop a file OR<button style={{color:"red",border:"none",backgroundColor:'transparent'}}>click here</button>to select a file</p>
+                {file && (
+                  <div>
+                    <strong>Selected file:</strong> {file.name}
+                  </div>
+                )}
               </div>
             )}
-          </div>
-          <br />
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
-
-        </Form>
+          </Dropzone>
+          {previewSrc ? (
+            isPreviewAvailable ? (
+              <div className="image-preview">
+                <img className="preview-image" style={{width:"200px", height:"200px;"}} src={previewSrc} alt="Preview" />
+              </div>
+            ) : (
+              <div className="preview-message">
+                <br/>
+                <p>No preview available for this file</p>
+              </div>
+            )
+          ) : (
+            <div className="preview-message">
+              <p>Image preview will be shown here after selection</p>
+            </div>
+          )}
+        </div>
+        <br/>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
+  
+      </Form>
       </div>
     </React.Fragment>
   );
