@@ -52,7 +52,7 @@ const UpdateSubmissionTypes = () => {
             }
 
         } catch (error) {
-                alert(error);
+            alert(error);
         }
 
     }

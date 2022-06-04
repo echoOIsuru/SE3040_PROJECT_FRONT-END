@@ -16,7 +16,8 @@ const ListPanelMembers = () => {
     const [indexOfLastItem, setindexOfLastItem] = useState(3);
     const [recordsPerPage] = useState(3);
     const [retrievedData, setretrievedData] = useState([])
-
+    
+    //fetch panel members data
     const fetchData = useCallback(async () => {
         try {
             const PanelMemberData = await axios({
@@ -53,7 +54,7 @@ const ListPanelMembers = () => {
         }
     }
 
-
+    //filter data
     const filterData = (obj, key) => {
 
         const results = obj.filter(o =>
@@ -63,8 +64,9 @@ const ListPanelMembers = () => {
 
     }
 
+    //search function
     const handleSearch = (e) => {
-        
+
         const k = e.target.value.toLowerCase()
 
         filterData(retrievedData, k);
@@ -95,42 +97,42 @@ const ListPanelMembers = () => {
                 </Row>
 
                 <Row style={{ marginTop: '50px' }} className='body-content'>
-                {SlicedPanelMember.length > 0 ?
-                    <Table responsive hover>
+                    {SlicedPanelMember.length > 0 ?
+                        <Table responsive hover>
 
-                        <thead>
-                            <tr>
-                                <th>PanelMember User Name</th>
-                                <th>PanelMember Name</th>
-                                <th>PanelMember Contact Number</th>
-                                <th>PanelMember E-mail</th>
-                                <th>PanelMember research Field</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                SlicedPanelMember && SlicedPanelMember.map((panelMem) => (
-                                    <tr>
-                                        <td>{panelMem.username}</td>
-                                        <td>{panelMem.name}</td>
-                                        <td>{panelMem.phone}</td>
-                                        <td>{panelMem.email}</td>
-                                        <td>{panelMem.research}</td>
-                                        <td>  <Link to={`/admin/panelMembers/edit/${panelMem._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <Link to={""} onClick={() => onDeletePanelMember(panelMem._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
+                            <thead>
+                                <tr>
+                                    <th>PanelMember User Name</th>
+                                    <th>PanelMember Name</th>
+                                    <th>PanelMember Contact Number</th>
+                                    <th>PanelMember E-mail</th>
+                                    <th>PanelMember research Field</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    SlicedPanelMember && SlicedPanelMember.map((panelMem) => (
+                                        <tr>
+                                            <td>{panelMem.username}</td>
+                                            <td>{panelMem.name}</td>
+                                            <td>{panelMem.phone}</td>
+                                            <td>{panelMem.email}</td>
+                                            <td>{panelMem.research}</td>
+                                            <td>  <Link to={`/admin/panelMembers/edit/${panelMem._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <Link to={""} onClick={() => onDeletePanelMember(panelMem._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
 
 
-                        </tbody>
-                    </Table>
-                    : <span style={{ display: 'flex', justifyContent: 'center' }}>
-                                Entries Unavailable !
-                            </span>
-                        }
+                            </tbody>
+                        </Table>
+                        : <span style={{ display: 'flex', justifyContent: 'center' }}>
+                            Entries Unavailable !
+                        </span>
+                    }
                     <Pagination
                         itemsCount={PanelMember.length}
                         itemsPerPage={recordsPerPage}

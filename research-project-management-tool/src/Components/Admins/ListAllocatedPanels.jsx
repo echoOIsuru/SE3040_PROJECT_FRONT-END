@@ -17,6 +17,7 @@ const ListAllocatedPanels = () => {
     const [recordsPerPage] = useState(3);
     const [retrievedData, setretrievedData] = useState([])
 
+    //fetch details of allocated panels
     const fetchData = useCallback(async () => {
         try {
             const AllocatedPanelsData = await axios({
@@ -37,7 +38,7 @@ const ListAllocatedPanels = () => {
     //slice retrieved data for the pagination
     const SlicedAllocatedPanels = AllocatedPanels.slice(indexOfFirstItem, indexOfLastItem);
 
-
+    //delete a allocated panel
     const onDeleteAllocatedPanels = async (id) => {
         if (window.confirm('Are you sure, you want to remove the selected Panel?')) {
             try {
@@ -53,7 +54,7 @@ const ListAllocatedPanels = () => {
         }
     }
 
-
+    //filter data
     const filterData = (obj, key) => {
 
         const results = obj.filter(o =>
@@ -63,8 +64,9 @@ const ListAllocatedPanels = () => {
 
     }
 
+    //search function
     const handleSearch = (e) => {
-        
+
         const k = e.target.value.toLowerCase()
 
         filterData(retrievedData, k);
@@ -89,47 +91,47 @@ const ListAllocatedPanels = () => {
                 </div><br /><br />
 
                 <Row className="list-title">
-                        <Col>
-                            <h2 style={{ fontWeight: '700' }}>List of Allocated Panels</h2>
-                        </Col>
-                        <Col className='d-flex justify-content-end'>
-                            <Link className='btn btn-outline-primary' to={("/admin/panelAllocation/create")} >Create New Panel</Link>
-                        </Col>
-                    </Row>
+                    <Col>
+                        <h2 style={{ fontWeight: '700' }}>List of Allocated Panels</h2>
+                    </Col>
+                    <Col className='d-flex justify-content-end'>
+                        <Link className='btn btn-outline-primary' to={("/admin/panelAllocation/create")} >Create New Panel</Link>
+                    </Col>
+                </Row>
 
                 <Row style={{ marginTop: '50px' }} className='body-content'>
-                {SlicedAllocatedPanels.length > 0 ?
-                    <Table responsive hover>
+                    {SlicedAllocatedPanels.length > 0 ?
+                        <Table responsive hover>
 
-                        <thead>
-                            <tr>
-                                <th>Student Group Name</th>
-                                <th>First Panel Member</th>
-                                <th>Second Panel Member</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                SlicedAllocatedPanels && SlicedAllocatedPanels.map((panel) => (
-                                    <tr>
-                                        <td>{panel.student_group}</td>
-                                        <td>{panel.panel_member1}</td>
-                                        <td>{panel.panel_member2}</td>
-                                        <td>  <Link to={`/admin/allocatedPanel/edit/${panel._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <Link to={""} onClick={() => onDeleteAllocatedPanels(panel._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
+                            <thead>
+                                <tr>
+                                    <th>Student Group Name</th>
+                                    <th>First Panel Member</th>
+                                    <th>Second Panel Member</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    SlicedAllocatedPanels && SlicedAllocatedPanels.map((panel) => (
+                                        <tr>
+                                            <td>{panel.student_group}</td>
+                                            <td>{panel.panel_member1}</td>
+                                            <td>{panel.panel_member2}</td>
+                                            <td>  <Link to={`/admin/allocatedPanel/edit/${panel._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <Link to={""} onClick={() => onDeleteAllocatedPanels(panel._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
 
 
-                        </tbody>
-                    </Table>
-                    : <span style={{ display: 'flex', justifyContent: 'center' }}>
-                                Entries Unavailable !
-                            </span>
-                        }
+                            </tbody>
+                        </Table>
+                        : <span style={{ display: 'flex', justifyContent: 'center' }}>
+                            Entries Unavailable !
+                        </span>
+                    }
                     <Pagination
                         itemsCount={AllocatedPanels.length}
                         itemsPerPage={recordsPerPage}

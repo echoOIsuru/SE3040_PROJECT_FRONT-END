@@ -67,7 +67,7 @@ const UpdatePanelMember = () => {
                 <div className='list-title' Style={{ marginTop: '50px' }}>
                     <hr />
                     <center>
-                    <h2>Edit Panel Member Details</h2>
+                        <h2>Edit Panel Member Details</h2>
                     </center>
                     <hr />
                     <br /><br />
@@ -125,11 +125,11 @@ const UpdatePanelMember = () => {
                             </Row>
                         </form >
                         <br />
-                        </div></div>
-                    </Container >
-                </ThemeProvider >
-                )
+                    </div></div>
+            </Container >
+        </ThemeProvider >
+    )
 }
 
-                export default UpdatePanelMember;
+export default UpdatePanelMember;
 

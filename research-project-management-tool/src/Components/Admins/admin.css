@@ -59,23 +59,23 @@ textarea {
     margin-right: auto;
     margin-top: 7px;
     width: 20em;
-  }
+}
 
 
-  .main-search {
+.main-search {
     padding: 12px 40px;
     background: #f2f3f3 0% 0% no-repeat padding-box;
     border: 1px solid #F8F9F9;
     border-radius: 10px;
-  }
+}
 
 .fontuser {
-  position: relative;
+    position: relative;
 }
+
 .fontuser i {
     position: absolute;
     left: 115px;
     top: 9px;
     color: gray;
-  }
-
+}

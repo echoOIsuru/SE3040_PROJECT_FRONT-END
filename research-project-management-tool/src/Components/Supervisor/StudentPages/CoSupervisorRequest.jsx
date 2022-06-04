@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SupervisorServices from "../../../src/Services/Supervisors/SupervisorServices";
+import SupervisorServices from "../../../Services/Supervisors/SupervisorServices";
 
 export default function CoSupervisorRequest() {
 
@@ -12,6 +12,7 @@ export default function CoSupervisorRequest() {
     const [groups, setGroups] = useState([]);
     const [supervisorID, setSupervisorID] = useState("");
     const [status, setStatus] = useState("")
+    const [requestID, setRequestID] = useState("")
 
     useEffect(() => {
 
@@ -31,6 +32,8 @@ export default function CoSupervisorRequest() {
                 setSupervisorID(res2.data.supervisor)
 
                 setStatus(res2.data.s_status);
+
+                setRequestID(res2.data._id)
             })
 
             // setGroups({
@@ -94,6 +97,18 @@ export default function CoSupervisorRequest() {
 
             //console.log(inputs)
         }
+    }
+
+    const cancelRequest = () => {
+        if (window.confirm("Do you want to cancel request?")) {
+            SupervisorServices.deleteTopicRequestByID(requestID).then(() => {
+                console.log("success")
+                navigate('/supervisors/student-requests')
+            })
+        } else {
+
+        }
+
     }
 
     return (
@@ -204,7 +219,12 @@ export default function CoSupervisorRequest() {
                             <h1 className="text-center text-warning">Your reqest under pending state</h1>
 
                             <h3 className="text-center">You can request to the co-supervisor when supervisor accept your request</h3>
+
                         </div>
+                        <br />
+                        <center>
+                            <button className="btn btn-warning" onClick={() => { cancelRequest() }}>Cancel Request</button>
+                        </center>
                     </div>
                 </div>
             }

@@ -6,13 +6,14 @@ import "./admin.css";
 
 const CreateSubmissionTypes = () => {
 
+    //define navigation
     let navigate = useNavigate();
 
     const [SubmissionType, setSubmissionType] = useState("")
     const [SubmissionDes, setSubmissionDes] = useState("")
     const [SubmissionDeadline, setSubmissionDeadline] = useState("")
 
-
+    //submit details
     const submitDetails = async (e) => {
         e.preventDefault();
         try {

@@ -5,13 +5,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { ThemeProvider, Container, Row, Col, Button, Form } from "react-bootstrap";
 import { v4 as uuidv4 } from 'uuid';
 import "./admin.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; //fontawsome icons
+import { faPlus } from '@fortawesome/free-solid-svg-icons'//fontawsome icons
 
 const DocsUploadHandler = () => {
 
+  //define navigation
   let navigate = useNavigate();
-  
+
   const [SubmissionTypes, setSubmissionTypes] = useState([]);
   const [file, setFile] = useState(null); // state for storing actual image
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
@@ -31,6 +32,7 @@ const DocsUploadHandler = () => {
     });
   };
 
+  //drop files/documents
   const onDrop = (files) => {
     const [uploadedFile] = files;
     setFile(uploadedFile);
@@ -52,6 +54,7 @@ const DocsUploadHandler = () => {
     }
   };
 
+  //handle after submit details
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
@@ -91,7 +94,7 @@ const DocsUploadHandler = () => {
   };
 
 
-
+  //fetch all data
   const fetchData = useCallback(async () => {
     try {
       const subTypes = await axios({
@@ -108,7 +111,7 @@ const DocsUploadHandler = () => {
     fetchData()
   }, [fetchData])
 
-
+  //map types and return those when rendering
   let TypesList = SubmissionTypes.length > 0
     && SubmissionTypes.map((type) => {
       return (

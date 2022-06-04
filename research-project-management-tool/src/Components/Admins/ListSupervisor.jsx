@@ -17,6 +17,8 @@ const ListSupervisor = () => {
     const [recordsPerPage] = useState(3);
     const [retrievedData, setretrievedData] = useState([])
 
+
+    //fetch and set retrived data 
     const fetchData = useCallback(async () => {
         try {
             const supervisorData = await axios({
@@ -40,7 +42,7 @@ const ListSupervisor = () => {
     //slice retrieved data for the pagination
     const Slicedsupervisor = Supervisor.slice(indexOfFirstItem, indexOfLastItem);
 
-
+    //delete supervisor
     const onDeletesupervisor = async (id) => {
         if (window.confirm('Are you sure, you want to remove the selected Supervisor?')) {
             try {
@@ -56,6 +58,7 @@ const ListSupervisor = () => {
         }
     }
 
+    //filter data
     const filterData = (obj, key) => {
 
         const results = obj.filter(o =>
@@ -65,6 +68,7 @@ const ListSupervisor = () => {
 
     }
 
+    //handle search function
     const handleSearch = (e) => {
         const k = e.target.value.toLowerCase()
 

@@ -70,7 +70,7 @@ const PaginationComponent = ({ itemsCount, itemsPerPage, currentPage, setCurrent
   useEffect(setLastPageAsCurrent, [pagesCount]);
 
   return (
-    <div style={{ marginTop:'10px' }}>
+    <div style={{ marginTop: '10px' }}>
       <div style={{ float: 'right' }}>
         Showing {currentPage} to {pagesCount} of {pagesCount} Entities
       </div>

@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 const MarkingSchemes = () => {
-
+  //define navigation
   let navigate = useNavigate();
 
   const [SubmissionTypes, setSubmissionTypes] = useState([]);
@@ -31,6 +31,7 @@ const MarkingSchemes = () => {
     });
   };
 
+  //drop files/documents
   const onDrop = (files) => {
     const [uploadedFile] = files;
     setFile(uploadedFile);
@@ -52,6 +53,7 @@ const MarkingSchemes = () => {
     }
   };
 
+  //when clicks the submit button
   const handleOnSubmit = async (event) => {
     event.preventDefault();
 
@@ -91,7 +93,7 @@ const MarkingSchemes = () => {
   };
 
 
-
+  //fetch submission types data
   const fetchData = useCallback(async () => {
     try {
       const subTypes = await axios({
@@ -108,7 +110,7 @@ const MarkingSchemes = () => {
     fetchData()
   }, [fetchData])
 
-
+  //map submission values and return options for dropdown
   let TypesList = SubmissionTypes.length > 0
     && SubmissionTypes.map((type) => {
       return (
@@ -214,7 +216,7 @@ const MarkingSchemes = () => {
                     <div className="image-preview">
                       <br />
                       <center>
-                      <img className="preview-image" style={{ width: "200px", height: "200px;" }} src={previewSrc} alt="Preview" />
+                        <img className="preview-image" style={{ width: "200px", height: "200px;" }} src={previewSrc} alt="Preview" />
                       </center>
                     </div>
                   ) : (

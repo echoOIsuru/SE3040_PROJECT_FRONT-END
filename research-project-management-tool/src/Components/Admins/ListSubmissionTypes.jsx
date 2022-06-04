@@ -18,6 +18,7 @@ const ListSubmissionTypes = () => {
     const [recordsPerPage] = useState(3);
     const [retrievedData, setretrievedData] = useState([])
 
+    //fetch and set retrived data 
     const fetchData = useCallback(async () => {
         try {
             const SubmissionTypesData = await axios({
@@ -38,7 +39,7 @@ const ListSubmissionTypes = () => {
     //slice retrieved data for the pagination
     const SlicedSubmissionTypes = SubmissionTypes.slice(indexOfFirstItem, indexOfLastItem);
 
-
+    //delete submission type
     const onDeleteSubmissionTypes = async (id) => {
         if (window.confirm('Are you sure, you want to remove the selected Submission Type?')) {
             try {
@@ -54,7 +55,7 @@ const ListSubmissionTypes = () => {
         }
     }
 
-
+    //filter data
     const filterData = (obj, key) => {
 
         const results = obj.filter(o =>
@@ -64,8 +65,9 @@ const ListSubmissionTypes = () => {
 
     }
 
+    //search function
     const handleSearch = (e) => {
-        
+
         const k = e.target.value.toLowerCase()
 
         filterData(retrievedData, k);
@@ -73,6 +75,7 @@ const ListSubmissionTypes = () => {
 
     }
 
+    //data conversion
     function convertDates(date) {
         return moment(date).format('MMMM Do YYYY, h:mm:ss a');
     }
@@ -94,47 +97,47 @@ const ListSubmissionTypes = () => {
                 </div><br /><br /><br />
 
                 <Row className="list-title">
-                        <Col>
-                            <h2 style={{ fontWeight: '700' }}>List of Submission Types</h2>
-                        </Col>
-                        <Col className='d-flex justify-content-end'>
-                            <Link className='btn btn-outline-primary' to={("/admin/create/submissionTypes")} >Create New Submssion Type</Link>
-                        </Col>
-                    </Row>
+                    <Col>
+                        <h2 style={{ fontWeight: '700' }}>List of Submission Types</h2>
+                    </Col>
+                    <Col className='d-flex justify-content-end'>
+                        <Link className='btn btn-outline-primary' to={("/admin/create/submissionTypes")} >Create New Submssion Type</Link>
+                    </Col>
+                </Row>
 
                 <Row style={{ marginTop: '50px' }} className='body-content'>
-                {SlicedSubmissionTypes.length > 0 ?
-                    <Table responsive hover>
+                    {SlicedSubmissionTypes.length > 0 ?
+                        <Table responsive hover>
 
-                        <thead>
-                            <tr>
-                                <th>Submission Type </th>
-                                <th>Submission Types Description</th>
-                                <th>Submission Type Deadline </th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                SlicedSubmissionTypes && SlicedSubmissionTypes.map((submission) => (
-                                    <tr>
-                                        <td>{submission.submission_type}</td>
-                                        <td>{submission.submission_description}</td>
-                                        <td>{convertDates(submission.submission_deadline)}</td>
-                                        <td>  <Link to={`/admin/submissionTypes/edit/${submission._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <Link to={""} onClick={() => onDeleteSubmissionTypes(submission._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
-                                        </td>
-                                    </tr>
-                                ))
-                            }
+                            <thead>
+                                <tr>
+                                    <th>Submission Type </th>
+                                    <th>Submission Types Description</th>
+                                    <th>Submission Type Deadline </th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    SlicedSubmissionTypes && SlicedSubmissionTypes.map((submission) => (
+                                        <tr>
+                                            <td>{submission.submission_type}</td>
+                                            <td>{submission.submission_description}</td>
+                                            <td>{convertDates(submission.submission_deadline)}</td>
+                                            <td>  <Link to={`/admin/submissionTypes/edit/${submission._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                                                <Link to={""} onClick={() => onDeleteSubmissionTypes(submission._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
+                                            </td>
+                                        </tr>
+                                    ))
+                                }
 
 
-                        </tbody>
-                    </Table>
-                    : <span style={{ display: 'flex', justifyContent: 'center' }}>
-                                Entries Unavailable !
-                            </span>
-                        }
+                            </tbody>
+                        </Table>
+                        : <span style={{ display: 'flex', justifyContent: 'center' }}>
+                            Entries Unavailable !
+                        </span>
+                    }
                     <Pagination
                         itemsCount={SubmissionTypes.length}
                         itemsPerPage={recordsPerPage}

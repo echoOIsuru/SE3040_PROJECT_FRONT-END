@@ -6,6 +6,7 @@ import "./admin.css";
 
 const UpdateSupervisor = () => {
 
+    //define navigation
     let navigate = useNavigate();
     const { id } = useParams();
 
@@ -13,6 +14,7 @@ const UpdateSupervisor = () => {
     const [SupervisorEmail, setSupervisorEmail] = useState("")
     const [SupervisorName, setSupervisorName] = useState("")
 
+    //edit supervisor function
     const editSupervisor = async (e) => {
         try {
             e.preventDefault();
@@ -33,6 +35,7 @@ const UpdateSupervisor = () => {
 
     }
 
+    //get supervisor by id and set to feilds
     const fetchData = useCallback(async () => {
         try {
             const SupervisorData = await axios({
@@ -61,7 +64,7 @@ const UpdateSupervisor = () => {
                 <div className='list-title' Style={{ marginTop: '50px' }}>
                     <hr />
                     <center>
-                    <h2>Edit Supervisor Details</h2>
+                        <h2>Edit Supervisor Details</h2>
                     </center>
                     <hr />
                     <br /><br />
