@@ -1,5 +1,6 @@
 import axios from "axios";
-const URL = 'http://localhost:8090/api/v1/';
+// const URL = 'http://localhost:8090/api/v1/';
+const URL = "https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/";
 
 // Register panel member
 const registerPanelMember = (data) => {
