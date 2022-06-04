@@ -8,9 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./admin.css";
 import Pagination from './Pagination';
 
-const ListPanelMembers = () => {
+const ListAllocatedPanels = () => {
 
-    const [PanelMember, setPanelMember] = useState([])
+    const [AllocatedPanels, setAllocatedPanels] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [indexOfFirstItem, setindexOfFirstItem] = useState(0);
     const [indexOfLastItem, setindexOfLastItem] = useState(3);
@@ -19,12 +19,12 @@ const ListPanelMembers = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const PanelMemberData = await axios({
+            const AllocatedPanelsData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/panelMembers/all`
+                url: `http://localhost:8090/api/v1/admin/AllocatedPanels/all`
             })
-            setPanelMember(PanelMemberData.data)
-            setretrievedData(PanelMemberData.data)
+            setAllocatedPanels(AllocatedPanelsData.data)
+            setretrievedData(AllocatedPanelsData.data)
         } catch (error) {
             alert(error);
         }
@@ -35,17 +35,17 @@ const ListPanelMembers = () => {
     }, [fetchData])
 
     //slice retrieved data for the pagination
-    const SlicedPanelMember = PanelMember.slice(indexOfFirstItem, indexOfLastItem);
+    const SlicedAllocatedPanels = AllocatedPanels.slice(indexOfFirstItem, indexOfLastItem);
 
 
-    const onDeletePanelMember = async (id) => {
-        if (window.confirm('Are you sure, you want to remove the selected Panel Member?')) {
+    const onDeleteAllocatedPanels = async (id) => {
+        if (window.confirm('Are you sure, you want to remove the selected Panel?')) {
             try {
                 await axios({
                     method: 'DELETE',
-                    url: `http://localhost:8090/api/v1/admin/panelMembers/${id}`
+                    url: `http://localhost:8090/api/v1/admin/AllocatedPanel/${id}`
                 })
-                alert("Selected Panel Member is removed from the system!!")
+                alert("Selected panel is removed from the system!!")
                 fetchData()
             } catch (error) {
                 alert(error)
@@ -59,7 +59,7 @@ const ListPanelMembers = () => {
         const results = obj.filter(o =>
             Object.keys(o).some(k => o[k].toString().toLowerCase().includes(key.toLowerCase())));
 
-        setPanelMember(results);
+        setAllocatedPanels(results);
 
     }
 
@@ -86,39 +86,38 @@ const ListPanelMembers = () => {
                     <i><FontAwesomeIcon icon={faMagnifyingGlass} /></i>
 
 
-                </div><br /><br /><br />
+                </div><br /><br />
 
-                <Row >
-                    <Col>
-                        <h2 style={{ fontWeight: '700' }}>List of Panel Members</h2>
-                    </Col>
-                </Row>
+                <Row className="list-title">
+                        <Col>
+                            <h2 style={{ fontWeight: '700' }}>List of Allocated Panels</h2>
+                        </Col>
+                        <Col className='d-flex justify-content-end'>
+                            <Link className='btn btn-outline-primary' to={("/admin/panelAllocation/create")} >Create New Panel</Link>
+                        </Col>
+                    </Row>
 
-                <Row style={{ marginTop: '50px' }}>
-                {SlicedPanelMember.length > 0 ?
+                <Row style={{ marginTop: '50px' }} className='body-content'>
+                {SlicedAllocatedPanels.length > 0 ?
                     <Table responsive hover>
 
                         <thead>
                             <tr>
-                                <th>PanelMember User Name</th>
-                                <th>PanelMember Name</th>
-                                <th>PanelMember Contact Number</th>
-                                <th>PanelMember E-mail</th>
-                                <th>PanelMember research Field</th>
+                                <th>Student Group Name</th>
+                                <th>First Panel Member</th>
+                                <th>Second Panel Member</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                SlicedPanelMember && SlicedPanelMember.map((panelMem) => (
+                                SlicedAllocatedPanels && SlicedAllocatedPanels.map((panel) => (
                                     <tr>
-                                        <td>{panelMem.username}</td>
-                                        <td>{panelMem.name}</td>
-                                        <td>{panelMem.phone}</td>
-                                        <td>{panelMem.email}</td>
-                                        <td>{panelMem.research}</td>
-                                        <td>  <Link to={`/admin/panelMembers/edit/${panelMem._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <Link to={""} onClick={() => onDeletePanelMember(panelMem._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
+                                        <td>{panel.student_group}</td>
+                                        <td>{panel.panel_member1}</td>
+                                        <td>{panel.panel_member2}</td>
+                                        <td>  <Link to={`/admin/allocatedPanel/edit/${panel._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <Link to={""} onClick={() => onDeleteAllocatedPanels(panel._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
                                         </td>
                                     </tr>
                                 ))
@@ -132,7 +131,7 @@ const ListPanelMembers = () => {
                             </span>
                         }
                     <Pagination
-                        itemsCount={PanelMember.length}
+                        itemsCount={AllocatedPanels.length}
                         itemsPerPage={recordsPerPage}
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
@@ -147,4 +146,5 @@ const ListPanelMembers = () => {
     )
 }
 
-export default ListPanelMembers;
+export default ListAllocatedPanels;
+

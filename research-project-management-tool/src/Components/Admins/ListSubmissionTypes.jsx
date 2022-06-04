@@ -7,10 +7,11 @@ import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import "./admin.css";
 import Pagination from './Pagination';
+import moment from 'moment'
 
-const ListAllocatedPanels = () => {
+const ListSubmissionTypes = () => {
 
-    const [AllocatedPanels, setAllocatedPanels] = useState([])
+    const [SubmissionTypes, setSubmissionTypes] = useState([])
     const [currentPage, setCurrentPage] = useState(1);
     const [indexOfFirstItem, setindexOfFirstItem] = useState(0);
     const [indexOfLastItem, setindexOfLastItem] = useState(3);
@@ -19,12 +20,12 @@ const ListAllocatedPanels = () => {
 
     const fetchData = useCallback(async () => {
         try {
-            const AllocatedPanelsData = await axios({
+            const SubmissionTypesData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/AllocatedPanels/all`
+                url: `http://localhost:8090/api/v1/admin/submissionTypes/all`
             })
-            setAllocatedPanels(AllocatedPanelsData.data)
-            setretrievedData(AllocatedPanelsData.data)
+            setSubmissionTypes(SubmissionTypesData.data)
+            setretrievedData(SubmissionTypesData.data)
         } catch (error) {
             alert(error);
         }
@@ -35,17 +36,17 @@ const ListAllocatedPanels = () => {
     }, [fetchData])
 
     //slice retrieved data for the pagination
-    const SlicedAllocatedPanels = AllocatedPanels.slice(indexOfFirstItem, indexOfLastItem);
+    const SlicedSubmissionTypes = SubmissionTypes.slice(indexOfFirstItem, indexOfLastItem);
 
 
-    const onDeleteAllocatedPanels = async (id) => {
-        if (window.confirm('Are you sure, you want to remove the selected Panel?')) {
+    const onDeleteSubmissionTypes = async (id) => {
+        if (window.confirm('Are you sure, you want to remove the selected Submission Type?')) {
             try {
                 await axios({
                     method: 'DELETE',
-                    url: `http://localhost:8090/api/v1/admin/AllocatedPanel/${id}`
+                    url: `http://localhost:8090/api/v1/admin/submissionTypes/${id}`
                 })
-                alert("Selected panel is removed from the system!!")
+                alert("Selected Submission Type is removed from the system!!")
                 fetchData()
             } catch (error) {
                 alert(error)
@@ -59,7 +60,7 @@ const ListAllocatedPanels = () => {
         const results = obj.filter(o =>
             Object.keys(o).some(k => o[k].toString().toLowerCase().includes(key.toLowerCase())));
 
-        setAllocatedPanels(results);
+        setSubmissionTypes(results);
 
     }
 
@@ -70,6 +71,10 @@ const ListAllocatedPanels = () => {
         filterData(retrievedData, k);
 
 
+    }
+
+    function convertDates(date) {
+        return moment(date).format('MMMM Do YYYY, h:mm:ss a');
     }
 
 
@@ -86,38 +91,38 @@ const ListAllocatedPanels = () => {
                     <i><FontAwesomeIcon icon={faMagnifyingGlass} /></i>
 
 
-                </div><br /><br />
+                </div><br /><br /><br />
 
                 <Row className="list-title">
                         <Col>
-                            <h2 style={{ fontWeight: '700' }}>List of Allocated Panels</h2>
+                            <h2 style={{ fontWeight: '700' }}>List of Submission Types</h2>
                         </Col>
                         <Col className='d-flex justify-content-end'>
-                            <Link className='btn btn-outline-primary' to={("/admin/panelAllocation/create")} >Create New Panel</Link>
+                            <Link className='btn btn-outline-primary' to={("/admin/create/submissionTypes")} >Create New Submssion Type</Link>
                         </Col>
                     </Row>
 
-                <Row style={{ marginTop: '50px' }}>
-                {SlicedAllocatedPanels.length > 0 ?
+                <Row style={{ marginTop: '50px' }} className='body-content'>
+                {SlicedSubmissionTypes.length > 0 ?
                     <Table responsive hover>
 
                         <thead>
                             <tr>
-                                <th>Student Group Name</th>
-                                <th>First Panel Member</th>
-                                <th>Second Panel Member</th>
+                                <th>Submission Type </th>
+                                <th>Submission Types Description</th>
+                                <th>Submission Type Deadline </th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                SlicedAllocatedPanels && SlicedAllocatedPanels.map((panel) => (
+                                SlicedSubmissionTypes && SlicedSubmissionTypes.map((submission) => (
                                     <tr>
-                                        <td>{panel.student_group}</td>
-                                        <td>{panel.panel_member1}</td>
-                                        <td>{panel.panel_member2}</td>
-                                        <td>  <Link to={`/admin/allocatedPanel/edit/${panel._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <Link to={""} onClick={() => onDeleteAllocatedPanels(panel._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
+                                        <td>{submission.submission_type}</td>
+                                        <td>{submission.submission_description}</td>
+                                        <td>{convertDates(submission.submission_deadline)}</td>
+                                        <td>  <Link to={`/admin/submissionTypes/edit/${submission._id}`} ><FontAwesomeIcon icon={faPenToSquare} /></Link>&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <Link to={""} onClick={() => onDeleteSubmissionTypes(submission._id)}><FontAwesomeIcon icon={faTrashCan} /></Link>
                                         </td>
                                     </tr>
                                 ))
@@ -131,7 +136,7 @@ const ListAllocatedPanels = () => {
                             </span>
                         }
                     <Pagination
-                        itemsCount={AllocatedPanels.length}
+                        itemsCount={SubmissionTypes.length}
                         itemsPerPage={recordsPerPage}
                         currentPage={currentPage}
                         setCurrentPage={setCurrentPage}
@@ -146,5 +151,4 @@ const ListAllocatedPanels = () => {
     )
 }
 
-export default ListAllocatedPanels;
-
+export default ListSubmissionTypes;

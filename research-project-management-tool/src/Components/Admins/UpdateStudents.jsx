@@ -54,15 +54,6 @@ const UpdateStudents = () => {
         } catch (error) {
             alert(error);
         };
-        // try {
-        //     const StudentGroupsData = await axios({
-        //         method: 'GET',
-        //         url: `http://localhost:8080/api/farmers/categories/all`
-        //     })
-        //     setStudentGroups(StudentGroupsData.data)
-        // } catch (error) {
-        //     alert(error);
-        // };
 
     }, []);
 

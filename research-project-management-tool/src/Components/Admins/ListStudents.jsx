@@ -93,7 +93,7 @@ const Liststudents = () => {
                         </Col>
                     </Row>
 
-                    <Row style={{ marginTop: '50px' }}>
+                    <Row style={{ marginTop: '50px' }} className='body-content'>
                         {Slicedstudents.length > 0 ?
                             <Table responsive hover>
 

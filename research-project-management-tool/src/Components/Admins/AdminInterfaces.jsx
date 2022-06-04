@@ -20,9 +20,9 @@ const AdminInterface = () => {
                                     <button onClick={() => { navigate("/admin/upload/markingSchemes") }}> Create Marking Scheme </button>
                                 </div>
                                 <div className="adminPromoRi">
-                                    <button onClick={() => { navigate("/admin/create/submissionTypes") }}> Create Submission Type </button>
+                                    <button onClick={() => { navigate("/admin/view/submissionTypes") }}>  Manage Submission Type </button>
                                 </div>
-                                <div className="adminReportRi">
+                                <div style={{marginBottom:'10px'}} className="adminReportRi">
                                     <button onClick={() => { navigate("/admin/view/allocatedPanels") }}> Manage Panel Allocation </button>
                                 </div>
                                 <div className="adminpayRi">
@@ -31,7 +31,7 @@ const AdminInterface = () => {
                                 <div className="adminPromoRi">
                                     <button onClick={() => { navigate("/admin/view/panelMembers") }}> Manage Panel Members </button>
                                 </div>
-                                <div className="adminReportRi">
+                                <div style={{marginBottom:'10px'}} className="adminReportRi">
                                     <button onClick={() => { navigate("/admin/view/students") }}> Manage Students </button>
                                 </div>
                                 <div className="adminReportRi">
