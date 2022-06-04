@@ -52,23 +52,33 @@ import AdminLogin from './Components/Admins/AdminLogin';
 import ListSubmissionTypes from './Components/Admins/ListSubmissionTypes';
 import UpdateSubmissionTypes from './Components/Admins/UpdateSubmssionTypes';
 
+import PanelMemmberTopic from "./Components/Students/panelMemberTopic";
+import PanelMemmberPpt from "./Components/Students/panalMemberFinalPpt";
+import DSubmition from "./Components/Students/documentSubmition";
+import AllDsubmition from "./Components/Students/viewDocumentSubmition";
+
+
 const Main = () => {
    return (
       <>
 
          <Routes>
-            <Route path="/add" element={<AddStudent />} />
-            <Route path="/student_home" element={<><Navbar /><AllStudent /></>} />
-            <Route path="/" element={<Login />} />
-
-            <Route path="/viewtopic" element={<><Navbar /><ViewTopicRequest /></>} />
-            <Route path="/group" element={<><Navbar /><AddGroup /></>} />
-            <Route path="/view_group" element={<><Navbar /><ViewGroup /></>} />
-            <Route path="/upload" element={<><Navbar /><Upload /></>} />
-            <Route path="/view_upload" element={<><Navbar /><Allfiles /></>} />
-            <Route path="/d" element={<><Navbar /><Download /></>} />
-            <Route path="/submition" element={<><Navbar /><Submition /></>} />
-            <Route path="/view_submition" element={<><Navbar /><Allsubmition /></>} />
+         <Route path="/add" element={<AddStudent/>}/>
+           <Route path="/student_home" element={<AllStudent/>}/>
+           <Route path="/" element={<Login/>}/>
+      
+           <Route path="/viewtopic" element={<ViewTopicRequest/>}/>
+           <Route path="/group" element={<AddGroup/>}/>
+           <Route path="/view_group" element={<ViewGroup/>}/>
+           <Route path="/upload" element={<Upload/>}/>
+           <Route path="/view_upload" element={<Allfiles/>}/>
+           <Route path="/d" element={<Download/>}/>
+           <Route path="/submition" element={<Submition/>}/>
+           <Route path="/Dsubmition" element={<DSubmition/>}/>
+           <Route path="/view_submition" element={<Allsubmition/>}/>
+           <Route path="/view_Dsubmition" element={<AllDsubmition/>}/>
+           <Route path="/view_supervisor_topic" element={<PanelMemmberTopic/>}/>
+           <Route path="/view_Final_presentation_feedback" element={<PanelMemmberPpt/>}/>
 
             {/* <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} /> */}
 
@@ -106,6 +116,14 @@ const Main = () => {
             <Route path="/admin/panelMembers/edit/:id" element={<><Navbar /><UpdatePanelMember /></>} />
             <Route path="/admin/view/submissionTypes" element={<><Navbar /><ListSubmissionTypes /></>} />
             <Route path="/admin/submissionTypes/edit/:id" element={<><Navbar /><UpdateSubmissionTypes /></>} />
+
+
+
+
+
+
+
+
          </Routes>
 
          <Footer />

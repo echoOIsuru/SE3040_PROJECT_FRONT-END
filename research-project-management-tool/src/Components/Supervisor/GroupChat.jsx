@@ -227,7 +227,6 @@ function GroupChat() {
                             </div>
                         </div>
                     </div>
-
                 </div>
 
 

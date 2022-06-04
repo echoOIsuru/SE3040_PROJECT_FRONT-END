@@ -57,7 +57,7 @@ export default function Upload(props) {
           formData.append('email',email);
 
           setErrorMsg('');
-          await axios.post(`http://localhost:8090/file/upload`, formData, {
+          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/file/upload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
@@ -89,7 +89,8 @@ export default function Upload(props) {
         {errorMsg && <p className="errorMsg">{errorMsg}</p>}
         <Row>
           <Col>
-            <Form.Group controlId="title">
+            <Form.Group controlId="title" className="text-light bg-success">
+            <label for="group name">Enter group name or Group ID</label>
               <Form.Control
                 type="text"
                 name="title"
@@ -103,8 +104,10 @@ export default function Upload(props) {
         <br/>
         <Row>
           <Col>
-            <Form.Group controlId="email">
+            <Form.Group controlId="email"  className="text-light bg-success">
+            <label for="email">Enter Email</label>
               <Form.Control
+          
                 type="text"
                 name="email"
                 value={state.email || ''}

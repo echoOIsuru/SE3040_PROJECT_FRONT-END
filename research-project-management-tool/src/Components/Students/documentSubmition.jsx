@@ -3,7 +3,7 @@ import Dropzone from 'react-dropzone';
 import axios from 'axios';
 import { Form, Row, Col, Button } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom'
-export default function Submition(props) {
+export default function DSubmition(props) {
   const [file, setFile] = useState(null); // state for storing actual image
   const [previewSrc, setPreviewSrc] = useState(''); // state for storing previewImage
   const [state, setState] = useState({
@@ -56,7 +56,7 @@ export default function Submition(props) {
           formData.append('email',email);
 
           setErrorMsg('');
-          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/submition/upload`, formData, {
+          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/Dsubmition/upload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
@@ -80,7 +80,7 @@ export default function Submition(props) {
     <React.Fragment>
         <div className="container" >
       <hr/>
-      <h3> Final presentation Portal</h3>
+      <h3> Final Document Portal</h3>
       <hr/>
       <br/>
       <Form className="search-form" onSubmit={handleOnSubmit}>
