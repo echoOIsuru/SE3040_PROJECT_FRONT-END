@@ -10,6 +10,7 @@ export default function SupervisorRequest() {
     const [supervisors, setSupervisors] = useState([]);
     const [inputs, setInputs] = useState({});
     const [groups, setGroups] = useState([])
+    const [studentGroup, setStudentGroup] = useState({})
 
     useEffect(() => {
         setInterestFields([{
@@ -29,13 +30,13 @@ export default function SupervisorRequest() {
             setGroups(res.data)
         })
 
-        // setSupervisors([
-        //     {
-        //         supervisorName: "supervisor1",
-        //     }, {
-        //         supervisorName: "supervisor2"
-        //     }
-        // ])
+        const student = JSON.parse(sessionStorage.getItem("STUDENT_DATA"))
+        //console.log("STUDENT", student)
+
+        SupervisorServices.getGroupByStudentNIC(student[0].nic).then(res => {
+            console.log(res.data, "FINAL_GROUP")
+            setStudentGroup(res.data)
+        })
 
     }, [])
 
@@ -71,6 +72,9 @@ export default function SupervisorRequest() {
 
         if (!inputs.s_group || !inputs.field || !inputs.supervisor || inputs.field == "fail" || inputs.supervisor == "fail")
             window.alert("please fill the form correctly")
+        else if (inputs.s_group.group_name !== studentGroup.group_name) {
+            window.alert("please select correct group")
+        }
         else {
             SupervisorServices.createTopicRequest(inputs).then(res => {
                 console.log(res.data, "FINAL")
@@ -78,7 +82,8 @@ export default function SupervisorRequest() {
                 navigate("/supervisors/co-supervisor/student-requests")
             })
 
-            //console.log(inputs)
+
+            // console.log(inputs.s_group.group_name == studentGroup.group_name)
         }
     }
 

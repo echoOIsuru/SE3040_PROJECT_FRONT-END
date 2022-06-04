@@ -154,7 +154,13 @@ export default function Supervisor() {
                 <div className="row" style={{ marginBottom: "20px", marginTop: "20px" }}>
                     <h2 className="text-center">Topic Registration Requests</h2>
                 </div>
-                <a href="supervisors/chats" className="btn btn-light">GO TO CHATS</a>
+                <div>
+                    <center>
+                        <a href="supervisors/chats" className="btn btn-outline-primary">GO TO CHATS</a>
+                        <a href="/supervisors/document-evaluations" className="btn btn-outline-primary">GO TO DOCUMENT SUBMISSION</a>
+                        <br /><br />
+                    </center>
+                </div>
                 <div className="row">
                     <table className="table">
                         <thead className="table-dark">

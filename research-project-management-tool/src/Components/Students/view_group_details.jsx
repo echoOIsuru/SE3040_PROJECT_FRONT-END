@@ -5,7 +5,7 @@ export default function ViewGroup(p) {
   const [students, setStudent] = useState([]);
 
   function getStudent() {
-    axios.get("http://localhost:8090/group/get",{withCredentials:true}).then((res) => {
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/group/get", { withCredentials: true }).then((res) => {
       console.log(res.data);
       setStudent(res.data)
     })
@@ -19,7 +19,7 @@ export default function ViewGroup(p) {
   }, [])
 
 
- 
+
   return (
 
 
@@ -43,16 +43,16 @@ export default function ViewGroup(p) {
         </thead>
 
         <tbody>
-          { students.length>0 && students[0].map(val =>
+          {students.length > 0 && students[0].map(val =>
             <tr key={val.nic}>
 
               <td >{val.group_name}</td>
               <td>{val.leader}</td>
-              <td>{val.member1}</td> 
+              <td>{val.member1}</td>
               <td>{val.member2}</td>
-              <td>{val.member3}</td> 
-              <td>{val.email}</td> 
-             
+              <td>{val.member3}</td>
+              <td>{val.email}</td>
+
 
             </tr>
           )}

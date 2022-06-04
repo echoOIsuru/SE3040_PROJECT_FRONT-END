@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import SupervisorServices from "../../../Services/Supervisors/SupervisorServices";
+import SupervisorServices from "../../../src/Services/Supervisors/SupervisorServices";
 
 export default function CoSupervisorRequest() {
 
