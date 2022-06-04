@@ -4,65 +4,9 @@ import './chat.css'
 
 function GroupChat() {
 
-    const [groups, setGroups] = useState([
-        // {
-        //     group_id: "GROUP_1",
-        //     group_name: "POWER GROUP",
-        //     leader: "12312asdasd",
-        //     member1: "member1",
-        //     member2: "member2",
-        //     member3: "member3",
-        //     supervisor_id: "123WWWWWWWW",
-        //     chat_id: "chatid00222"
-        // },
-        // {
-        //     group_id: "GROUP_2",
-        //     group_name: "POWER2 GROUP",
-        //     leader: "12312asdasd",
-        //     member1: "member1",
-        //     member2: "member2",
-        //     member3: "member3",
-        //     supervisor_id: "123WWWWWWWW",
-        //     chat_id: "chatid00222"
-        // }, {
-        //     group_id: "GROUP_3",
-        //     group_name: "POWER3 GROUP",
-        //     leader: "12312asdasd",
-        //     member1: "member1",
-        //     member2: "member2",
-        //     member3: "member3",
-        //     supervisor_id: "123WWWWWWWW",
-        //     chat_id: "chatid00222"
-        // }
-    ])
+    const [groups, setGroups] = useState([])
 
-    const [chats, setChats] = useState([
-        // {
-        //     group_id: "GROUP 1",
-        //     data: [
-        //         {
-        //             name: "supervisor",
-        //             chat: "sdhgajshdgjhasdgjhasgdjhagsdjhg",
-        //             date: new Date()
-        //         },
-        //         {
-        //             name: "student1",
-        //             chat: "sssssssssssssssssssss",
-        //             date: new Date()
-        //         },
-        //         {
-        //             name: "supervisor",
-        //             chat: "No NO NO noONONN ONON ON ",
-        //             date: new Date()
-        //         },
-        //         {
-        //             name: "student2",
-        //             chat: "ssssdSSWWRTGGGGGGG",
-        //             date: new Date()
-        //         },
-        //     ]
-        // }
-    ])
+    const [chats, setChats] = useState([])
 
     const [msg, setMsg] = useState("");
 
@@ -195,94 +139,96 @@ function GroupChat() {
 
 
 
+                <div className='col col-md-5' style={{ marginBottom: "10px", width: "80%" }}>
 
-                <div className="messaging ">
-                    <div className="inbox_msg bg-light">
-                        <div className="inbox_people bg-dark">
-                            <div className="headind_srch">
-                                <div className="recent_heading">
-                                    <h4 className='text-light'>Recent</h4>
+
+                    <div className="messaging " >
+                        <div className="inbox_msg bg-light">
+                            <div className="inbox_people bg-dark">
+                                <div className="headind_srch">
+                                    <div className="recent_heading">
+                                        <h4 className='text-light'>Recent</h4>
+                                    </div>
+                                </div>
+                                <div className="inbox_chat scroll bg-light" id="style-4" >
+
+                                    {
+                                        groups.map((group, index) => (
+                                            <div key={index} onClick={() => { showChat(group.group_data) }}>
+                                                {index == 0 ?
+                                                    <div className="chat_list btn-outline-dark">
+                                                        <div className="chat_people">
+                                                            <div className="chat_img"> <img src="https://cdn-icons-png.flaticon.com/512/718/718339.png" alt="profile" /> </div>
+                                                            <div className="chat_ib">
+                                                                <h6>{group.group_data.group_name}</h6>
+                                                                <p>{group.group_data.leader + ", " + group.group_data.member1 + ", " + group.group_data.member2 + ", " + group.group_data.member3}.</p>
+                                                            </div>
+                                                        </div>
+                                                    </div> :
+
+                                                    <div className="chat_list btn-outline-dark">
+                                                        <div className="chat_people">
+                                                            <div className="chat_img"> <img src="https://cdn-icons-png.flaticon.com/512/718/718339.png" alt="profile" /> </div>
+                                                            <div className="chat_ib">
+                                                                <h6>{group.group_data.group_name} </h6>
+                                                                <p>{group.group_data.leader + ", " + group.group_data.member1 + ", " + group.group_data.member2 + ", " + group.group_data.member3}.</p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                }
+
+                                            </div>
+                                        )
+                                        )
+                                    }
+
+
+
                                 </div>
                             </div>
-                            <div className="inbox_chat scroll bg-light" id="style-4" >
+                            <div className="mesgs bg-dark">
+                                {groupName && <div>
+                                    <h6 className="text-center text-light">{groupName}</h6>
+                                    <hr className='text-light' />
+                                </div>}
+                                <div className="msg_history">
 
-                                {
-                                    groups.map((group, index) => (
-                                        <div key={index} onClick={() => { showChat(group.group_data) }}>
-                                            {index == 0 ?
-                                                <div className="chat_list btn-outline-dark">
-                                                    <div className="chat_people">
-                                                        <div className="chat_img"> <img src="https://cdn-icons-png.flaticon.com/512/718/718339.png" alt="profile" /> </div>
-                                                        <div className="chat_ib">
-                                                            <h6>{group.group_data.group_name}</h6>
-                                                            <p>{group.group_data.leader + ", " + group.group_data.member1 + ", " + group.group_data.member2 + ", " + group.group_data.member3}.</p>
-                                                        </div>
-                                                    </div>
+                                    {
+                                        chats.length !== 0 && chats[0].data.map((chat, index) => (
+                                            <div key={index}>
+                                                {chat.name == "supervisor" ? <div className="outgoing_msg">
+                                                    <div className="sent_msg">
+                                                        <p>{chat.chat}</p>
+                                                        <span className="time_date">{chat.date}     |    {chat.time}</span></div>
                                                 </div> :
-
-                                                <div className="chat_list btn-outline-dark">
-                                                    <div className="chat_people">
-                                                        <div className="chat_img"> <img src="https://cdn-icons-png.flaticon.com/512/718/718339.png" alt="profile" /> </div>
-                                                        <div className="chat_ib">
-                                                            <h6>{group.group_data.group_name} </h6>
-                                                            <p>{group.group_data.leader + ", " + group.group_data.member1 + ", " + group.group_data.member2 + ", " + group.group_data.member3}.</p>
+                                                    <div className="incoming_msg">
+                                                        <div className="incoming_msg_img"> <img src="https://cdn-icons-png.flaticon.com/512/718/718339.png" alt="sunil" /></div>
+                                                        <div className="received_msg">
+                                                            <div className="received_withd_msg">
+                                                                <p>{chat.chat}</p>
+                                                                <span className="time_date"> <b>{chat.name}</b> |    {chat.date}     |    {chat.time}</span></div>
                                                         </div>
                                                     </div>
 
-                                                </div>
+                                                }
+                                            </div>
+                                        ))
+                                    }
 
-                                            }
-
-                                        </div>
-                                    )
-                                    )
-                                }
-
-
-
-                            </div>
-                        </div>
-                        <div className="mesgs bg-dark">
-                            {groupName && <div>
-                                <h6 className="text-center text-light">{groupName}</h6>
-                                <hr className='text-light' />
-                            </div>}
-                            <div className="msg_history">
-
-                                {
-                                    chats.length !== 0 && chats[0].data.map((chat, index) => (
-                                        <div key={index}>
-                                            {chat.name == "supervisor" ? <div className="outgoing_msg">
-                                                <div className="sent_msg">
-                                                    <p>{chat.chat}</p>
-                                                    <span className="time_date">{chat.date}     |    {chat.time}</span></div>
-                                            </div> :
-                                                <div className="incoming_msg">
-                                                    <div className="incoming_msg_img"> <img src="https://cdn-icons-png.flaticon.com/512/718/718339.png" alt="sunil" /></div>
-                                                    <div className="received_msg">
-                                                        <div className="received_withd_msg">
-                                                            <p>{chat.chat}</p>
-                                                            <span className="time_date"> <b>{chat.name}</b> |    {chat.date}     |    {chat.time}</span></div>
-                                                    </div>
-                                                </div>
-
-                                            }
-                                        </div>
-                                    ))
-                                }
-
-                            </div>
-                            <div className="type_msg">
-                                <div className="input_msg_write">
-                                    <input type="text" className="write_msg text-light" placeholder="Type a message" name="chat" onChange={onChangeHandler} value={msg} />
-                                    <button onClick={sendChatMessage} className="msg_send_btn" type="button"><i className="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                </div>
+                                <div className="type_msg">
+                                    <div className="input_msg_write">
+                                        <input type="text" className="write_msg text-light" placeholder="Type a message" name="chat" onChange={onChangeHandler} value={msg} />
+                                        <button onClick={sendChatMessage} className="msg_send_btn" type="button"><i className="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
-
-
 
 
 

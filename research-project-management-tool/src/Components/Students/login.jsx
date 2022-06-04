@@ -15,10 +15,13 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const url = "https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/login";
-			const { data: res } = await axios.post(url, data, { withCredentials: true });
-			localStorage.setItem("token", res.data);
+			axios.post(url, data).then(res => {
+				sessionStorage.setItem("STUDENT_DATA", JSON.stringify([res.data]))
+				window.location = "/student_home";
+			})
+			//localStorage.setItem("token", res.data);
 
-			window.location = "/student_home";
+
 		} catch (error) {
 			if (
 				error.response &&

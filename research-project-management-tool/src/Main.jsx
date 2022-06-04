@@ -29,41 +29,46 @@ import ViewTopicRequest from "./Components/Students/viewTopicRequest";
 import ViewGroup from "./Components/Students/view_group_details";
 import Allsubmition from "./Components/Students/view_Submition";
 import CoSupervisorRequest from "./Components/Supervisor/StudentPages/CoSupervisorRequest";
+import Navbar from "./Nav/Navbar";
+import Footer from "./Nav/Footer";
 
 const Main = () => {
    return (
-      <Routes>
+      <>
+
+         <Routes>
+            <Route path="/add" element={<AddStudent />} />
+            <Route path="/student_home" element={<><Navbar /><AllStudent /></>} />
+            <Route path="/" element={<Login />} />
+
+            <Route path="/viewtopic" element={<><Navbar /><ViewTopicRequest /></>} />
+            <Route path="/group" element={<><Navbar /><AddGroup /></>} />
+            <Route path="/view_group" element={<><Navbar /><ViewGroup /></>} />
+            <Route path="/upload" element={<><Navbar /><Upload /></>} />
+            <Route path="/view_upload" element={<><Navbar /><Allfiles /></>} />
+            <Route path="/d" element={<><Navbar /><Download /></>} />
+            <Route path="/submition" element={<><Navbar /><Submition /></>} />
+            <Route path="/view_submition" element={<><Navbar /><Allsubmition /></>} />
 
 
-         <Route path="/add" element={<AddStudent />} />
-         <Route path="/student_home" element={<AllStudent />} />
-         <Route path="/" element={<Login />} />
 
-         <Route path="/viewtopic" element={<ViewTopicRequest />} />
-         <Route path="/group" element={<AddGroup />} />
-         <Route path="/view_group" element={<ViewGroup />} />
-         <Route path="/upload" element={<Upload />} />
-         <Route path="/view_upload" element={<Allfiles />} />
-         <Route path="/d" element={<Download />} />
-         <Route path="/submition" element={<Submition />} />
-         <Route path="/view_submition" element={<Allsubmition />} />
+            <Route path="/admins" element={<><Navbar /><Admin /></>} />
+            <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} />
 
+            <Route path="/panelMember2" element={<PanelMembers />} />
+            <Route path="/supervisors" element={<><Navbar /><Supervisor /></>} />
+            <Route path="/supervisors/register" element={<><Navbar /><SupervisorRegister /></>} />
+            <Route path="/supervisors/login" element={<><SupervisorLogin /></>} />
+            <Route path="/supervisors/chats" element={<><Navbar /><GroupChat /></>} />
+            <Route path="/supervisors/student/chats" element={<><Navbar /><GroupChatStudent /></>} />
+            <Route path="/supervisors/student-requests" element={<><Navbar /><SupervisorRequest /></>} />
+            <Route path="/supervisors/co-supervisor/student-requests" element={<><Navbar /><CoSupervisorRequest /></>} />
+            <Route path="/supervisors/document-evaluations" element={<><Navbar /><SupervisorDocumentEvaluation /></>} />
+            <Route path="/supervisors/document-feedbacks" element={<><Navbar /><SupervisorFeedback /></>} />
+         </Routes>
 
-
-         <Route path="/admins" element={<Admin />} />
-         <Route path="/panelMember" element={<PanelMembers />} />
-
-         <Route path="/panelMember2" element={<PanelMembers />} />
-         <Route path="/supervisors" element={<Supervisor />} />
-         <Route path="/supervisors/register" element={<SupervisorRegister />} />
-         <Route path="/supervisors/login" element={<SupervisorLogin />} />
-         <Route path="/supervisors/chats" element={<GroupChat />} />
-         <Route path="/supervisors/student/chats" element={<GroupChatStudent />} />
-         <Route path="/supervisors/student-requests" element={<SupervisorRequest />} />
-         <Route path="/supervisors/co-supervisor/student-requests" element={<CoSupervisorRequest />} />
-         <Route path="/supervisors/document-evaluations" element={<SupervisorDocumentEvaluation />} />
-         <Route path="/supervisors/document-feedbacks" element={<SupervisorFeedback />} />
-      </Routes>
+         <Footer />
+      </>
    )
 }
 
