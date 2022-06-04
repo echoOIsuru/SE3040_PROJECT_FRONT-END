@@ -10,15 +10,15 @@ export default function EditStudent() {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState(""); 
+  const [email, setEmail] = useState("");
   const [nic, setNic] = useState("");
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:8090/student/get/" + id).then((res) => {
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/student/get/" + id).then((res) => {
       setName(res.data.student.name)
-      console.log("dsdsd",res.data)
+      console.log("dsdsd", res.data)
       setAge(res.data.student.age)
       setGender(res.data.student.gender)
       setEmail(res.data.student.email)
@@ -43,7 +43,7 @@ export default function EditStudent() {
 
 
       }
-      axios.put("http://localhost:8090/student/update/" + id, newStudent).then((res) => {
+      axios.put("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/student/update/" + id, newStudent).then((res) => {
         alert(res.data.status);
         navigate("/");
       }).catch((err) => {
@@ -83,7 +83,7 @@ export default function EditStudent() {
 
         <div className="from-group">
           <label for="nic">student nic</label>
-          <input type="text" className="form-control" id="nic" value={nic}placeholder="Enter Student nic"
+          <input type="text" className="form-control" id="nic" value={nic} placeholder="Enter Student nic"
             onChange={(e) => {
               setNic(e.target.value);
             }} />
@@ -99,10 +99,10 @@ export default function EditStudent() {
 
         </div>
 
-        
+
         <div className="from-group">
           <label for="email">student email</label>
-          <input type="text" className="form-control" id="email" value={email}placeholder="Enter Student email"
+          <input type="text" className="form-control" id="email" value={email} placeholder="Enter Student email"
             onChange={(e) => {
               setEmail(e.target.value);
             }} />
@@ -111,7 +111,7 @@ export default function EditStudent() {
 
         <div className="from-group">
           <label for="phone">student phone number</label>
-          <input type="text" className="form-control" id="phone" value={phone}placeholder="Enter Student phone number"
+          <input type="text" className="form-control" id="phone" value={phone} placeholder="Enter Student phone number"
             onChange={(e) => {
               setPhone(e.target.value);
             }} />

@@ -5,7 +5,7 @@ export default function AllDsubmition (p) {
   const [files, setFiles] = useState([]);
 
   function getFile() {
-    axios.get("http://localhost:8090/Dsubmition/get",{withCredentials:true}).then((res) => {
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/Dsubmition/get",{withCredentials:true}).then((res) => {
       console.log(res.data);
       setFiles(res.data)
     })
@@ -19,7 +19,7 @@ export default function AllDsubmition (p) {
 
   function deleteFile(id) {
     if (window.confirm('Are you sure do you whant to delete this file?')) {
-      axios.delete("http://localhost:8090/Dsubmition/file-delete/" + id).then((res) => {
+      axios.delete("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/Dsubmition/file-delete/" + id).then((res) => {
         alert("File deleted");
         getFile();
       })

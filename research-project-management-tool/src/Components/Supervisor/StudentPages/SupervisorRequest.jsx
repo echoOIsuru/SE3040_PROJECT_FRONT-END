@@ -9,24 +9,34 @@ export default function SupervisorRequest() {
     const [intrestField, setInterestFields] = useState([]);
     const [supervisors, setSupervisors] = useState([]);
     const [inputs, setInputs] = useState({});
+    const [groups, setGroups] = useState([])
+    const [studentGroup, setStudentGroup] = useState({})
 
     useEffect(() => {
         setInterestFields([{
-            field: "ggwp1"
+            field: "Internet of Things"
         }, {
-            field: "ggwp2"
+            field: "Cloud Computing"
         }, {
-            field: "ggwp3"
+            field: "Big Data Analytics"
+        }, {
+            field: "Machine Learning"
+        }, {
+            field: "Artificial Intelligence"
         },
         ])
 
-        // setSupervisors([
-        //     {
-        //         supervisorName: "supervisor1",
-        //     }, {
-        //         supervisorName: "supervisor2"
-        //     }
-        // ])
+        SupervisorServices.getAllGroups().then(res => {
+            setGroups(res.data)
+        })
+
+        const student = JSON.parse(sessionStorage.getItem("STUDENT_DATA"))
+        //console.log("STUDENT", student)
+
+        SupervisorServices.getGroupByStudentNIC(student[0].nic).then(res => {
+            console.log(res.data, "FINAL_GROUP")
+            setStudentGroup(res.data)
+        })
 
     }, [])
 
@@ -50,20 +60,30 @@ export default function SupervisorRequest() {
 
     }
 
+    const onClickGroup = (data) => {
+        let temp = inputs;
+        temp.s_group = data
+        setInputs(temp)
+    }
+
     const onSubmit = (e) => {
         e.preventDefault();
 
 
-        if (!inputs.field || !inputs.supervisor || inputs.field == "fail" || inputs.supervisor == "fail")
+        if (!inputs.s_group || !inputs.field || !inputs.supervisor || inputs.field == "fail" || inputs.supervisor == "fail")
             window.alert("please fill the form correctly")
+        else if (inputs.s_group.group_name !== studentGroup.group_name) {
+            window.alert("please select correct group")
+        }
         else {
             SupervisorServices.createTopicRequest(inputs).then(res => {
                 console.log(res.data, "FINAL")
                 window.alert("Request Successfully Added");
-                //navigate("")
+                navigate("/supervisors/co-supervisor/student-requests")
             })
 
-            //console.log(inputs)
+
+            // console.log(inputs.s_group.group_name == studentGroup.group_name)
         }
     }
 
@@ -88,6 +108,33 @@ export default function SupervisorRequest() {
                             <label className="form-label">Mobile</label>
                             <input type="text" name="student_mobile" className='form-control' onChange={handleOnChange} required />
                             <br />
+
+                            <label className="form-label">Group Name</label>
+                            <div className="form-label" style={{
+                                height: "200px",
+                                overflowY: "scroll",
+                                overflowX: "hidden"
+                            }}>
+                                {groups.map((group, index) => {
+                                    return (
+                                        <div key={index}>
+                                            <div className="form-check">
+                                                <input className="form-check-input" type="radio" name="s_group" onClick={() => onClickGroup(group)} />
+                                                <label className="form-check-label" required>
+                                                    {group.group_name}
+                                                </label>
+                                            </div>
+                                        </div>
+
+
+                                    )
+                                })}
+
+
+                            </div>
+                            <br />
+
+
                             <label className="form-label">Interest Field</label>
                             <select className="form-control form-control-sm" name="field" onChange={handleOnChange} required>
                                 <option defaultChecked={true} className="text-center" value="fail">----------- Select------------</option>

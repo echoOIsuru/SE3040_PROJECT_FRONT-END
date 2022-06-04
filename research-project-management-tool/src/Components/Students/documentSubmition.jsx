@@ -56,7 +56,7 @@ export default function DSubmition(props) {
           formData.append('email',email);
 
           setErrorMsg('');
-          await axios.post(`http://localhost:8090/Dsubmition/upload`, formData, {
+          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/Dsubmition/upload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }

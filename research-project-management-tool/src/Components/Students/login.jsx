@@ -14,11 +14,14 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			const url = "http://localhost:8090/login";
-			const { data: res } = await axios.post(url, data,{withCredentials:true});
-			localStorage.setItem("token", res.data);
-			window.location = "/student_home";
-			
+			const url = "https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/login";
+			axios.post(url, data).then(res => {
+				sessionStorage.setItem("STUDENT_DATA", JSON.stringify([res.data]))
+				window.location = "/student_home";
+			})
+			//localStorage.setItem("token", res.data);
+
+
 		} catch (error) {
 			if (
 				error.response &&
@@ -36,6 +39,7 @@ const Login = () => {
 			<div className={styles.login_form_container}>
 				<div className={styles.left}>
 					<form className={styles.form_container} onSubmit={handleSubmit}>
+						<br /><br />
 						<h1>Login to Your Account</h1>
 						<input
 							type="email"
@@ -60,6 +64,17 @@ const Login = () => {
 							Sign In
 						</button>
 					</form>
+					<div className="col">
+						<br /><br />
+						<center>
+							<a href="/supervisors/login" className="btn " style={{ fontSize: "14px", fontWeight: "bold", backgroundColor: "#3bb19b", color: "white", borderRadius: "100px", padding: "10px" }}>
+								Supervisor </a> <br /><br />
+							<a href="/panelMember" className="btn" style={{ fontSize: "14px", fontWeight: "bold", backgroundColor: "#3bb19b", color: "white", borderRadius: "100px", padding: "10px" }}>
+								Panel Member
+							</a>
+						</center>
+					</div>
+
 				</div>
 				<div className={styles.right}>
 					<h1>New Here ?</h1>
@@ -70,7 +85,7 @@ const Login = () => {
 					</Link>
 				</div>
 			</div>
-		</div>
+		</div >
 	);
 };
 

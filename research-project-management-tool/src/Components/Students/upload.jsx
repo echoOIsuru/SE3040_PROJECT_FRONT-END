@@ -57,7 +57,7 @@ export default function Upload(props) {
           formData.append('email',email);
 
           setErrorMsg('');
-          await axios.post(`http://localhost:8090/file/upload`, formData, {
+          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/file/upload`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }

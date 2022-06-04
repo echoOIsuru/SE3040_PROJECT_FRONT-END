@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-export default function Allsubmition (p) {
+export default function Allsubmition(p) {
   const [files, setFiles] = useState([]);
 
   function getFile() {
-    axios.get("http://localhost:8090/submition/get",{withCredentials:true}).then((res) => {
+    const student = JSON.parse(sessionStorage.getItem("STUDENT_DATA"))
+    console.log(student[0].email);
+
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/submition/get/" + student[0].email).then((res) => {
       console.log(res.data);
       setFiles(res.data)
     })
@@ -19,7 +22,7 @@ export default function Allsubmition (p) {
 
   function deleteFile(id) {
     if (window.confirm('Are you sure do you whant to delete this file?')) {
-      axios.delete("http://localhost:8090/submition/file-delete/" + id).then((res) => {
+      axios.delete("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/submition/file-delete/" + id).then((res) => {
         alert("File deleted");
         getFile();
       })
@@ -47,7 +50,7 @@ export default function Allsubmition (p) {
         </thead>
 
         <tbody>
-          {files.length>0 && files[0].map(val =>
+          {files.length > 0 && files[0].map(val =>
             <tr key={val._id}>
 
               <td >{val.title}</td>

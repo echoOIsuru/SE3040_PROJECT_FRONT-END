@@ -5,7 +5,7 @@ export default function PanelMemmberPpt(p) {
   const [students, setStudent] = useState([]);
 
   function getStudent() {
-    axios.get("http://localhost:8090/supervisorPpt").then((res) => {
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/supervisorPpt").then((res) => {
       console.log(res.data);
       setStudent(res.data)
     })
