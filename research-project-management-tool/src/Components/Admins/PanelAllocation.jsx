@@ -36,7 +36,7 @@ const PanelAllocation = () => {
                 panel_member2: PanelMember2,
             }
 
-            const response = await axios.post("http://localhost:8090/api/v1/admin/create/panelAllocation", data)
+            const response = await axios.post("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/create/panelAllocation", data)
 
             if (response.status === 201) {
                 alert("Successfully Allocated " + PanelMember1 + " and " + PanelMember2 + " to " + StudentGroup + " Group")
@@ -63,7 +63,7 @@ const PanelAllocation = () => {
                 panel_member2: PanelMember2,
             }
 
-            await axios.put(`http://localhost:8090/api/v1/admin/AllocatedPanel/${id}`, updateData)
+            await axios.put(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/AllocatedPanel/${id}`, updateData)
             alert("You have Successfully Updated the Panel!!")
             navigate("/admin/view/allocatedPanels");
 
@@ -78,7 +78,7 @@ const PanelAllocation = () => {
             try {
                 const resData = await axios({
                     method: 'GET',
-                    url: `http://localhost:8090/api/v1/admin/AllocatedPanel/${id}`
+                    url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/AllocatedPanel/${id}`
                 })
                 let AllocGrp = resData.data;
                 setStudentGroup(AllocGrp.student_group)
@@ -91,7 +91,7 @@ const PanelAllocation = () => {
         try {
             const AllocatedPanelData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/AllocatedPanels/all`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/AllocatedPanels/all`
             })
             setAllocatedPanels(AllocatedPanelData.data)
         } catch (error) {
@@ -100,7 +100,7 @@ const PanelAllocation = () => {
         try {
             const GrpData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/studentGroups/all`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/studentGroups/all`
             })
             setStudentGroups(GrpData.data)
         } catch (error) {
@@ -109,7 +109,7 @@ const PanelAllocation = () => {
         try {
             const PanelData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/panelMembers/all`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/panelMembers/all`
             })
             setPanelMembers(PanelData.data)
         } catch (error) {

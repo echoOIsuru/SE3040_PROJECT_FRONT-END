@@ -22,7 +22,7 @@ const Liststudents = () => {
         try {
             const studentsData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/students/all`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/students/all`
             })
             setstudents(studentsData.data)
             setretrievedData(studentsData.data)
@@ -47,7 +47,7 @@ const Liststudents = () => {
             try {
                 await axios({
                     method: 'DELETE',
-                    url: `http://localhost:8090/api/v1/admin/students/${id}`
+                    url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/students/${id}`
                 })
                 alert("Selected student is removed from the system!!")
                 fetchData()

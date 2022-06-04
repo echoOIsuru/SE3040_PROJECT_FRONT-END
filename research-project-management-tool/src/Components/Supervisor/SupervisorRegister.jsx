@@ -8,16 +8,19 @@ function SupervisorRegister() {
     const [inputs, setInputs] = useState({});
     const [data, setData] = useState([
         {
-            fieldName: "ggwp"
+            fieldName: "Artificial Intelligence"
         },
         {
-            fieldName: "ggwp2"
+            fieldName: "Machine Learning"
         },
         {
-            fieldName: "ggwp3"
+            fieldName: "Big Data Analytics"
         },
         {
-            fieldName: "ggwp4"
+            fieldName: "Cloud Computing"
+        },
+        {
+            fieldName: "Internet of Things"
         },
     ])
 

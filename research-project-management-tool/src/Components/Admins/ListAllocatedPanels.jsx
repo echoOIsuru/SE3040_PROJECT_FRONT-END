@@ -44,7 +44,7 @@ const ListAllocatedPanels = () => {
             try {
                 await axios({
                     method: 'DELETE',
-                    url: `http://localhost:8090/api/v1/admin/AllocatedPanel/${id}`
+                    url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/AllocatedPanel/${id}`
                 })
                 alert("Selected panel is removed from the system!!")
                 fetchData()

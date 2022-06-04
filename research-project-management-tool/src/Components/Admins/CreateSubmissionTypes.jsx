@@ -24,7 +24,7 @@ const CreateSubmissionTypes = () => {
             }
             console.log(data);
 
-            const response = await axios.post("http://localhost:8090/api/v1/admin/create/submissionTypes", data)
+            const response = await axios.post("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/create/submissionTypes", data)
 
             if (response.status === 201) {
                 alert("New Submission Type Added to the System!!!");

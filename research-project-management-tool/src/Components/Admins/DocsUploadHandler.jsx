@@ -70,7 +70,7 @@ const DocsUploadHandler = () => {
           formData.append('submission_type', submission_type);
 
           setErrorMsg('');
-          await axios.post(`http://localhost:8090/api/v1/admin/upload/documents`, formData, {
+          await axios.post(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/upload/documents`, formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }

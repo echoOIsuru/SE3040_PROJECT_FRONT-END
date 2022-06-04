@@ -41,58 +41,75 @@ import ViewTopicRequest from "./Components/Students/viewTopicRequest";
 import ViewGroup from "./Components/Students/view_group_details";
 import Allsubmition from "./Components/Students/view_Submition";
 import CoSupervisorRequest from "./Components/Supervisor/StudentPages/CoSupervisorRequest";
-import AdminLogin from "./Components/Admins/AdminLogin";
-import ListSubmissionTypes from "./Components/Admins/ListSubmissionTypes";
-import UpdateSubmissionTypes from "./Components/Admins/UpdateSubmssionTypes";
+import Navbar from "./Nav/Navbar";
+import Footer from "./Nav/Footer";
+
+import PanelMemberRegister from "./Components/PanelMembers/PanelMemberRegister";
+import ViewPanel from "./Components/PanelMembers/ViewPanel";
+import TopicFeedback from "./Components/PanelMembers/TopicFeedback";
+import PptFeedback from "./Components/PanelMembers/PptFeedback";
+import AdminLogin from './Components/Admins/AdminLogin';
+import ListSubmissionTypes from './Components/Admins/ListSubmissionTypes';
+import UpdateSubmissionTypes from './Components/Admins/UpdateSubmssionTypes';
 
 const Main = () => {
    return (
-      <Routes>
+      <>
 
-         <Route path="/admin/login" element={<AdminLogin />} />
-         <Route path="/admin/interface" element={<AdminInterface />} />
-         <Route path="/admin/create/submissionTypes" element={<CreateSubmissionTypes />} />
-         <Route path="/admin/upload/templates" element={<DocsUploadHandler />} />
-         <Route path="/admin/upload/markingSchemes" element={<MarkingSchemes />} />
-         <Route path="/admin/view/students" element={<Liststudents />} />
-         <Route path="/admin/student/edit/:id" element={<UpdateStudents />} />
-         <Route path="/admin/panelAllocation/create" element={<PanelAllocation />} />
-         <Route path="/admin/allocatedPanel/edit/:id" element={<PanelAllocation />} />
-         <Route path="/admin/view/allocatedPanels" element={<ListAllocatedPanels />} />
-         <Route path="/admin/view/supervisors" element={<ListSupervisor />} />
-         <Route path="/admin/supervisor/edit/:id" element={<UpdateSupervisor />} />
-         <Route path="/admin/view/panelMembers" element={<ListPanelMembers />} />
-         <Route path="/admin/panelMembers/edit/:id" element={<UpdatePanelMember />} />
-         <Route path="/admin/view/submissionTypes" element={<ListSubmissionTypes />} />
-         <Route path="/admin/submissionTypes/edit/:id" element={<UpdateSubmissionTypes />} />
+         <Routes>
+            <Route path="/add" element={<AddStudent />} />
+            <Route path="/student_home" element={<><Navbar /><AllStudent /></>} />
+            <Route path="/" element={<Login />} />
 
-         <Route path="/add" element={<AddStudent />} />
-         <Route path="/student_home" element={<AllStudent />} />
-         <Route path="/" element={<Login />} />
+            <Route path="/viewtopic" element={<><Navbar /><ViewTopicRequest /></>} />
+            <Route path="/group" element={<><Navbar /><AddGroup /></>} />
+            <Route path="/view_group" element={<><Navbar /><ViewGroup /></>} />
+            <Route path="/upload" element={<><Navbar /><Upload /></>} />
+            <Route path="/view_upload" element={<><Navbar /><Allfiles /></>} />
+            <Route path="/d" element={<><Navbar /><Download /></>} />
+            <Route path="/submition" element={<><Navbar /><Submition /></>} />
+            <Route path="/view_submition" element={<><Navbar /><Allsubmition /></>} />
 
-         <Route path="/viewtopic" element={<ViewTopicRequest />} />
-         <Route path="/group" element={<AddGroup />} />
-         <Route path="/view_group" element={<ViewGroup />} />
-         <Route path="/upload" element={<Upload />} />
-         <Route path="/view_upload" element={<Allfiles />} />
-         <Route path="/d" element={<Download />} />
-         <Route path="/submition" element={<Submition />} />
-         <Route path="/view_submition" element={<Allsubmition />} />
+            <Route path="/panelMember" element={<><Navbar /><PanelMembers /></>} />
+
+            <Route path="/panelMember2" element={<PanelMembers />} />
+            <Route path="/supervisors" element={<><Navbar /><Supervisor /></>} />
+            <Route path="/supervisors/register" element={<><Navbar /><SupervisorRegister /></>} />
+            <Route path="/supervisors/login" element={<><SupervisorLogin /></>} />
+            <Route path="/supervisors/chats" element={<><Navbar /><GroupChat /></>} />
+            <Route path="/supervisors/student/chats" element={<><Navbar /><GroupChatStudent /></>} />
+            <Route path="/supervisors/student-requests" element={<><Navbar /><SupervisorRequest /></>} />
+            <Route path="/supervisors/co-supervisor/student-requests" element={<><Navbar /><CoSupervisorRequest /></>} />
+            <Route path="/supervisors/document-evaluations" element={<><Navbar /><SupervisorDocumentEvaluation /></>} />
+            <Route path="/supervisors/document-feedbacks" element={<><Navbar /><SupervisorFeedback /></>} />
+
+            <Route path="/panelMember" element={<PanelMembers />} />
+            <Route path="/panelMemberReg" element={<PanelMemberRegister />} />
+            <Route path="/viewPanel" element={<ViewPanel />} />
+            <Route path="/topic-feedback" element={<TopicFeedback />} />
+            <Route path="/ppt-feedback" element={<PptFeedback />} />
 
 
-         <Route path="/panelMember" element={<PanelMembers />} />
-         <Route path="/panelMember2" element={<PanelMembers />} />
-         <Route path="/supervisors" element={<Supervisor />} />
-         <Route path="/supervisors/register" element={<SupervisorRegister />} />
-         <Route path="/supervisors/login" element={<SupervisorLogin />} />
-         <Route path="/supervisors/chats" element={<GroupChat />} />
-         <Route path="/supervisors/student/chats" element={<GroupChatStudent />} />
-         <Route path="/supervisors/student-requests" element={<SupervisorRequest />} />
-         <Route path="/supervisors/co-supervisor/student-requests" element={<CoSupervisorRequest />} />
-         <Route path="/supervisors/document-evaluations" element={<SupervisorDocumentEvaluation />} />
-         <Route path="/supervisors/document-feedbacks" element={<SupervisorFeedback />} />
-      </Routes>
+            <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/interface" element={<><Navbar /><AdminInterface /></>} />
+            <Route path="/admin/create/submissionTypes" element={<><Navbar /><CreateSubmissionTypes /></>} />
+            <Route path="/admin/upload/templates" element={<><Navbar /><DocsUploadHandler /></>} />
+            <Route path="/admin/upload/markingSchemes" element={<><Navbar /><MarkingSchemes /></>} />
+            <Route path="/admin/view/students" element={<><Navbar /><Liststudents /></>} />
+            <Route path="/admin/student/edit/:id" element={<><Navbar /><UpdateStudents /></>} />
+            <Route path="/admin/panelAllocation/create" element={<><Navbar /><PanelAllocation /></>} />
+            <Route path="/admin/allocatedPanel/edit/:id" element={<><Navbar /><PanelAllocation /></>} />
+            <Route path="/admin/view/allocatedPanels" element={<><Navbar /><ListAllocatedPanels /></>} />
+            <Route path="/admin/view/supervisors" element={<><Navbar /><ListSupervisor /></>} />
+            <Route path="/admin/supervisor/edit/:id" element={<><Navbar /><UpdateSupervisor /></>} />
+            <Route path="/admin/view/panelMembers" element={<><Navbar /><ListPanelMembers /></>} />
+            <Route path="/admin/panelMembers/edit/:id" element={<><Navbar /><UpdatePanelMember /></>} />
+            <Route path="/admin/view/submissionTypes" element={<><Navbar /><ListSubmissionTypes /></>} />
+            <Route path="/admin/submissionTypes/edit/:id" element={<><Navbar /><UpdateSubmissionTypes /></>} />
+         </Routes>
 
+         <Footer />
+      </>
    )
 }
 

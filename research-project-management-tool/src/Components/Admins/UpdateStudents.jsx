@@ -28,7 +28,7 @@ const UpdateStudents = () => {
                 phone: StudentPhoneN
             }
 
-            await axios.put(`http://localhost:8090/api/v1/admin/students/${id}`, StudentsD)
+            await axios.put(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/students/${id}`, StudentsD)
             alert("Selected Student is Updated!!");
             navigate("/admin/view/students");
 
@@ -42,7 +42,7 @@ const UpdateStudents = () => {
         try {
             const StudentsData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/students/${id}`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/students/${id}`
             })
             let IData = StudentsData.data;
             setStudentId(IData.nic)

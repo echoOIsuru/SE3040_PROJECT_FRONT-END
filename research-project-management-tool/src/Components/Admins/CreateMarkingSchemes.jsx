@@ -98,7 +98,7 @@ const MarkingSchemes = () => {
     try {
       const subTypes = await axios({
         method: 'GET',
-        url: `http://localhost:8090/api/v1/admin/submissionTypes/all`
+        url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/submissionTypes/all`
       })
       setSubmissionTypes(subTypes.data)
     } catch (error) {

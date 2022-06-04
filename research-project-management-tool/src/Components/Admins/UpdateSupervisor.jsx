@@ -25,7 +25,7 @@ const UpdateSupervisor = () => {
                 s_mobile: SupervisorMobile,
             }
 
-            await axios.put(`http://localhost:8090/api/v1/admin/supervisor/${id}`, SupervisorD)
+            await axios.put(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/supervisor/${id}`, SupervisorD)
             alert("Selected Supervisor Member is Updated!!");
             navigate("/admin/view/supervisors");
 
@@ -40,7 +40,7 @@ const UpdateSupervisor = () => {
         try {
             const SupervisorData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/supervisor/${id}`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/supervisor/${id}`
             })
             let IData = SupervisorData.data;
             setSupervisorMobile(IData.s_mobile)

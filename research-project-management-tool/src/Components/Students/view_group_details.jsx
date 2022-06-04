@@ -4,8 +4,13 @@ import axios from "axios";
 export default function ViewGroup(p) {
   const [students, setStudent] = useState([]);
 
+
+
   function getStudent() {
-    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/group/get", { withCredentials: true }).then((res) => {
+    const student = JSON.parse(sessionStorage.getItem("STUDENT_DATA"))
+    console.log(student[0].email);
+
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/group/get/" + student[0].email).then((res) => {
       console.log(res.data);
       setStudent(res.data)
     })

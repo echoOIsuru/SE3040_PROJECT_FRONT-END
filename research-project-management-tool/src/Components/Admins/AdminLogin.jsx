@@ -18,7 +18,7 @@ function AdminLogin() {
         e.preventDefault()
         //setLoding(true)
         console.log("kk", values)
-        axios.post("http://localhost:8090/api/v1/admin/login/validate", values).then(res => {
+        axios.post("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/login/validate", values).then(res => {
 
             if (!res.data) {
                 window.alert('Please enter correct username and password')

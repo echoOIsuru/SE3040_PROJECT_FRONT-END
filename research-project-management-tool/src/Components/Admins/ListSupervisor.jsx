@@ -23,7 +23,7 @@ const ListSupervisor = () => {
         try {
             const supervisorData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/supervisor/all`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/supervisor/all`
             })
             setSupervisor(supervisorData.data)
             setretrievedData(supervisorData.data)

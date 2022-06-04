@@ -17,7 +17,7 @@ const UpdateSubmissionTypes = () => {
         try {
             const StudentsData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/submissionTypes/${id}`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/submissionTypes/${id}`
             })
             let IData = StudentsData.data;
             setSubmissionType(IData.submission_type)
@@ -44,7 +44,7 @@ const UpdateSubmissionTypes = () => {
             }
             console.log(data);
 
-            const response = await axios.put(`http://localhost:8090/api/v1/admin/submissionTypes/${id}`, data)
+            const response = await axios.put(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/submissionTypes/${id}`, data)
 
             if (response.status === 200) {
                 alert("Submission Type is Updated!!!");

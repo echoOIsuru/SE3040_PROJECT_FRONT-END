@@ -27,7 +27,7 @@ const UpdatePanelMember = () => {
                 research: PanelMemberResearch
             }
 
-            await axios.put(`http://localhost:8090/api/v1/admin/panelMembers/${id}`, PanelMemberD)
+            await axios.put(`https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/panelMembers/${id}`, PanelMemberD)
             alert("Selected PanelMember Member is Updated!!");
             navigate("/admin/view/panelMembers");
 
@@ -41,7 +41,7 @@ const UpdatePanelMember = () => {
         try {
             const PanelMemberData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/panelMembers/${id}`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/panelMembers/${id}`
             })
             let IData = PanelMemberData.data;
             setPanelMemberMobile(IData.phone)

@@ -22,7 +22,7 @@ const ListPanelMembers = () => {
         try {
             const PanelMemberData = await axios({
                 method: 'GET',
-                url: `http://localhost:8090/api/v1/admin/panelMembers/all`
+                url: `https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/api/v1/admin/panelMembers/all`
             })
             setPanelMember(PanelMemberData.data)
             setretrievedData(PanelMemberData.data)

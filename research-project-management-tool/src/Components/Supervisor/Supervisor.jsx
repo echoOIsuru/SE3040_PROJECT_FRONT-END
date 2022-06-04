@@ -11,7 +11,7 @@ export default function Supervisor() {
     const [len, setLen] = useState(0);
     const [current, setCurrent] = useState([]);
     const [firsIndex, setFirsIndex] = useState(0);
-    const [recordsPerPage, setRecordPerPage] = useState(1);
+    const [recordsPerPage, setRecordPerPage] = useState(5);
     const [lastIndex, setLastIndex] = useState(recordsPerPage);
     const [numberOfRecords, setNumberOfRecords] = useState(0)
     const [currentPage, setCurrentPage] = useState(1)
@@ -204,12 +204,12 @@ export default function Supervisor() {
 
                     </table>
                     <div className="col">
-                        <span>{currentPage + " out of  " + numberOfRecords}</span><br />
-                        <button onClick={previousPage} disabled={firsIndex != 0 ? false : true}>BACK</button>
-                        <button onClick={nextPage} disabled={lastIndex != len ? false : true}>NEXT</button>
 
-
-
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button className="btn btn-primary" onClick={previousPage} disabled={firsIndex != 0 ? false : true}>BACK</button>
+                            <span className="btn"><b>{currentPage + " out of  " + numberOfRecords}</b></span><br />
+                            <button className="btn btn-primary" onClick={nextPage} disabled={lastIndex == len || currentPage == numberOfRecords ? true : false}>NEXT</button>
+                        </div>
                     </div>
 
                 </div>

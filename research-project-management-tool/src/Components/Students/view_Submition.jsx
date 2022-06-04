@@ -5,7 +5,10 @@ export default function Allsubmition(p) {
   const [files, setFiles] = useState([]);
 
   function getFile() {
-    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/submition/get", { withCredentials: true }).then((res) => {
+    const student = JSON.parse(sessionStorage.getItem("STUDENT_DATA"))
+    console.log(student[0].email);
+
+    axios.get("https://p9b173fk99.execute-api.us-east-1.amazonaws.com/dev/submition/get/" + student[0].email).then((res) => {
       console.log(res.data);
       setFiles(res.data)
     })
